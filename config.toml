@@ -1,4 +1,4 @@
-baseURL = "http://exo-cortex.github.io/"
+baseURL = "https://exo-cortex.github.io/"
 languageCode = "en-us"
 title = "my website"
 theme="archie"
