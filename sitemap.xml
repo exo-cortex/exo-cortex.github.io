@@ -1,18 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://exo-cortex.github.io/blog/</loc>
-    <lastmod>2021-05-28T21:52:50+02:00</lastmod>
-  </url><url>
-    <loc>https://exo-cortex.github.io/blog/github-first-use/</loc>
-    <lastmod>2021-05-28T21:52:50+02:00</lastmod>
-  </url><url>
-    <loc>https://exo-cortex.github.io/</loc>
-    <lastmod>2021-05-28T21:52:50+02:00</lastmod>
-  </url><url>
-    <loc>https://exo-cortex.github.io/categories/</loc>
-  </url><url>
-    <loc>https://exo-cortex.github.io/tags/</loc>
-  </url>
-</urlset>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url><loc>https://exo-cortex.github.io/blog/astrazeneka/</loc><lastmod>2021-05-29T19:10:14+02:00</lastmod></url><url><loc>https://exo-cortex.github.io/blog/</loc><lastmod>2021-05-29T19:10:14+02:00</lastmod></url><url><loc>https://exo-cortex.github.io/</loc><lastmod>2021-05-29T19:10:14+02:00</lastmod></url><url><loc>https://exo-cortex.github.io/about/about/</loc><lastmod>2021-05-29T18:57:06+02:00</lastmod></url><url><loc>https://exo-cortex.github.io/about/</loc><lastmod>2021-05-29T18:57:06+02:00</lastmod></url><url><loc>https://exo-cortex.github.io/blog/github-first-use/</loc><lastmod>2021-05-28T21:52:50+02:00</lastmod></url><url><loc>https://exo-cortex.github.io/tags/audio/</loc><lastmod>2021-05-26T16:43:45+02:00</lastmod></url><url><loc>https://exo-cortex.github.io/tags/curves/</loc><lastmod>2021-05-26T16:43:45+02:00</lastmod></url><url><loc>https://exo-cortex.github.io/tags/music/</loc><lastmod>2021-05-26T16:43:45+02:00</lastmod></url><url><loc>https://exo-cortex.github.io/projects/curved-pitches/</loc><lastmod>2021-05-26T16:43:45+02:00</lastmod></url><url><loc>https://exo-cortex.github.io/projects/</loc><lastmod>2021-05-26T16:43:45+02:00</lastmod></url><url><loc>https://exo-cortex.github.io/tags/sine-waves/</loc><lastmod>2021-05-26T16:43:45+02:00</lastmod></url><url><loc>https://exo-cortex.github.io/tags/</loc><lastmod>2021-05-26T16:43:45+02:00</lastmod></url><url><loc>https://exo-cortex.github.io/categories/</loc></url></urlset>
