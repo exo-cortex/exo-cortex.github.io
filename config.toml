@@ -1,6 +1,6 @@
 baseURL = "https://exo-cortex.github.io/"
 languageCode = "en-us"
-title = "my website"
+title = "exo-cortex: weblog"
 theme="archie"
 
 # copyright = "© Athul"
@@ -13,9 +13,9 @@ pygmentscodefencesguesssyntax = true
 paginate=3 # articles per page
 
 [params]
-	mode="auto" # color-mode → light,dark or auto
+	mode="light" # color-mode → light,dark or auto
 	useCDN=false # don't use CDNs for fonts and icons, instead serve them locally.
-	subtitle = "Minimal and Clean [blog theme for Hugo](https://github.com/athul/archie)"
+	# subtitle = "Minimal and Clean [blog theme for Hugo](https://github.com/athul/archie)"
 
 # Social Tags
 
@@ -46,10 +46,15 @@ name = "blog"
 url = "/blog"
 weight = 2
 
-# [[menu.main]]
-# name = "About"
-# url = "/about"
-# weight = 3
+[[menu.main]]
+name = "projects"
+url = "/projects"
+weight = 3
+
+[[menu.main]]
+name = "about"
+url = "/about"
+weight = 3
 
 [[menu.main]]
 name = "tags"
