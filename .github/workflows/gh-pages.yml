@@ -29,6 +29,6 @@ jobs:
           publish_dir: ./public
           #   keep_files: true
           user_name: exo-cortex
-          # user_email: <username@email.com>
+          user_email: thehurric4ne@gmail.com>
           publish_branch: main
         #   cname: example.com
