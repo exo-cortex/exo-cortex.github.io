@@ -1,7 +1,8 @@
 ---
-title: "Github First Use"
+title: "github first use"
 date: 2021-05-28T21:52:50+02:00
 draft: false
+tags: ["git", "github", "how-to"]
 ---
 
 How to initialize git repository, add files, commit changes and push to existing github repository:

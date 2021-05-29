@@ -6,23 +6,24 @@ theme="archie"
 # copyright = "© Athul"
 
 # Code Highlight
-pygmentsstyle = "monokai"
+# pygmentsstyle = "monokai"
+pygmentsstyle = "solarized-dark"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
-paginate=3 # articles per page
+paginate=5 # articles per page
 
 [params]
-	mode="light" # color-mode → light,dark or auto
+	mode="auto" # color-mode → light,dark or auto
 	useCDN=false # don't use CDNs for fonts and icons, instead serve them locally.
 	# subtitle = "Minimal and Clean [blog theme for Hugo](https://github.com/athul/archie)"
 
 # Social Tags
 
-# [[params.social]]
-# name = "GitHub"
-# icon = "github"
-# url = "https://github.com/athul/archie"
+[[params.social]]
+name = "GitHub"
+icon = "github"
+url = "https://github.com/exo-cortex"
 
 # [[params.social]]
 # name = "Twitter"
@@ -49,14 +50,14 @@ weight = 2
 [[menu.main]]
 name = "projects"
 url = "/projects"
+weight = 2
+
+[[menu.main]]
+name = "tags"
+url = "/tags"
 weight = 3
 
 [[menu.main]]
 name = "about"
 url = "/about"
-weight = 3
-
-[[menu.main]]
-name = "tags"
-url = "/tags"
 weight = 4

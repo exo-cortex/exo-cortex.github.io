@@ -5,4 +5,4 @@ draft: false
 ---
 
 Yesterday I got my vaccine. Finally. 
-I got the AstraZeneka vaccine yesterday and have been feeling quite under the weather since. Slight fever, pumping headache and a general drowsiness is part of the general experience. Tomorrow should be better.
+Last night and since I've been feeling quite under the weather. Slight fever, a pumping headache and general drowsiness seems to be part of the general experience. Tomorrow should be better.
