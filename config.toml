@@ -6,8 +6,8 @@ theme="archie"
 # copyright = "© Athul"
 
 # Code Highlight
-# pygmentsstyle = "monokai"
-pygmentsstyle = "solarized-dark"
+pygmentsstyle = "monokai"
+# pygmentsstyle = "solarized-dark"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
@@ -50,6 +50,11 @@ weight = 2
 [[menu.main]]
 name = "projects"
 url = "/projects"
+weight = 2
+
+[[menu.main]]
+name = "how-to"
+url = "/how-to"
 weight = 2
 
 [[menu.main]]
