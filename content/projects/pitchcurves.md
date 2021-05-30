@@ -9,7 +9,7 @@ math: true
 **idea**: creating sound from *pure functions*.  
 The most elemental wave-forms are sine functions. 
 
-{{< figure src="/img/graph.svg" title="a simple sine function." style="width:50%" >}}
+{{< figure src="/img/graph.svg" title="a simple sine function." >}}
 <!-- ![image](static/img/graph.png) -->
 
 
