@@ -5,7 +5,7 @@ draft: false
 math: true
 ---
 
-with the help of [**this nice explanation**](https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/) I was able to add math-typesetting to my blog. 
+with the help of [**this nice explanation**](https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/) I was able to add math-typesetting to my blog. The framework is **KaTeX** and it supports a [variety](https://katex.org/docs/supported.html#sqrt) of **LaTeX** math typesetting.
 
 This enables me to write fomulas like these:
 

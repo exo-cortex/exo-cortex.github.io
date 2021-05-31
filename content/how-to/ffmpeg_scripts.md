@@ -16,8 +16,7 @@ ffmpeg -y -i "$1" -vf scale=$3:-1 -c:v vp9 -preset quality -b:v $4 -pass 1 -an -
 ffmpeg -i "$1" -vf scale=$3:-1 -c:v vp9 -preset quality -b:v $4 -pass 2 -an -auto-alt-ref 0 $2
 ```
 explanation: 
-
-- an -> drop audio
-- vf -> video filtering
-- c:v -> video codec - here "vp9"
-- preset -> [ultrafast, superfast, veryfast, faster, fast, medium (default), slow, slower, veryslow] 
+- -an -> drop audio
+- -vf -> video filtering
+- -c:v -> video codec - here "vp9"
+- -preset -> [ultrafast, superfast, veryfast, faster, fast, medium (default), slow, slower, veryslow] 
