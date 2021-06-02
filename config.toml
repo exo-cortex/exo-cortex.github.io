@@ -6,7 +6,7 @@ theme="archie"
 # copyright = "© Athul"
 
 # Code Highlight
-pygmentsstyle = "monokai"
+pygmentsstyle = "pygments"
 # pygmentsstyle = "solarized-dark"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
