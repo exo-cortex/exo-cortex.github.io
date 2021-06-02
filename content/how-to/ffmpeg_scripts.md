@@ -20,3 +20,9 @@ explanation:
 - -vf -> video filtering
 - -c:v -> video codec - here "vp9"
 - -preset -> [ultrafast, superfast, veryfast, faster, fast, medium (default), slow, slower, veryslow] 
+
+---
+links:
+- [vp9 guide](https://trac.ffmpeg.org/wiki/Encode/VP9)
+- [h264 guide](https://trac.ffmpeg.org/wiki/Encode/H.264)
+- [av1guide](https://trac.ffmpeg.org/wiki/Encode/AV1)
