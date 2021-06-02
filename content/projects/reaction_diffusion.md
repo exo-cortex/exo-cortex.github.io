@@ -5,7 +5,9 @@ draft: false
 math: true
 ---
 
-{{< figure src="/img/reaction_diffusion_crop.svg" title="a typical reaction-diffusion pattern." >}}
+![raction diffusion pattern](/img/reaction_diffusion_crop.svg)
+
+<!-- {{< figure src="/img/reaction_diffusion_crop.svg" title="a typical reaction-diffusion pattern." >}} -->
 
 Reaction-diffusion systems can model many natural pattern-forming processes. 
 
@@ -17,8 +19,17 @@ $$
     \frac{\partial v}{\partial t} = r_v \nabla^2 v + u v ^2 - (f + k) v
 $$
 
+In this model the interaction $u$ and $v$ can be seen as 2 chemicals each with their respective diffusion rates. $u$ and $v$ are simply two functions over some space (a 2D space in my case). $f, k$ are system-specific. We can think of $u$ and $v$ as two densities values distributed over a domain. In my case this domain is a 2-dimensional area. Which means that $u$ and $v$ are simply 2 textures.
+
 {{< video src="/video/react_anim_01_compatible.webm" type="video/webm" preload="auto" width="200" >}}
 
-In this model the interaction of 2 chemicals $u$ and $v$ with their respective diffusion rates $ r_u$ and $r_v$ is defined. The parameters $f, k$ are system-specific. Think of $u$ and $v$ as two densities distributed over a domain. In my case this domain is a 2-dimensional area. Which means that $u$ and $v$ are simply 2 textures.
+![interesting pattern1](/img/little_creatures_800x800.png)
+![interesting pattern2](/img/reaction_diffusion_mesh.png)
 
-<!-- <video  src="video/react_anim_01_compatible.webm"></video> -->
+This animation was made with python and can be found [here](https://github.com/exo-cortex/reaction_diffusion_python/).
+
+
+---
+
+see also:
+- https://github.com/pmneila/jsexp/blob/master/grayscott/grayscott.js
