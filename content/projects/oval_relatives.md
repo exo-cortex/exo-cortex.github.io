@@ -36,3 +36,8 @@ $$
 $$
 
 In words: We follow the original curve $\mathbf{v}$ and at each point we go into the direction orthonormal - i.e. orthogonal/perpendicular _and_ normalized to unit length of $1$ - to the tangent of the curve at that point.
+
+---
+
+**todo**:
+- animation: wabbelgifs, increasing length of the series. 

@@ -26,10 +26,11 @@ In this model the interaction $u$ and $v$ can be seen as 2 chemicals each with t
 ![interesting pattern1](/img/little_creatures_800x800.png)
 ![interesting pattern2](/img/reaction_diffusion_mesh.png)
 
-This animation was made with python and can be found [here](https://github.com/exo-cortex/reaction_diffusion_python/).
+This animation was made with python using numpy and scipy. A version of the python-script can be found [here](https://github.com/exo-cortex/reaction_diffusion_python/).
 
 
 ---
 
 see also:
-- https://github.com/pmneila/jsexp/blob/master/grayscott/grayscott.js
+- [reaction diffusion in the browser](https://pmneila.github.io/jsexp/grayscott/)
+- [overview + classification of different patterns](https://mrob.com/pub/comp/xmorphia/pearson-classes.html)
