@@ -6,4 +6,9 @@ draft: false
 
 I am a physicist, based in berlin. 
 
-I know mathematica, c++, python.
+send me an email to "lukipuki at posteo . net".
+
+my public key:
+```
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDN+k0GNp4oOUbvr++p4IimpiBSY5Njb9sdwsdppcFoB
+```
