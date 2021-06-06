@@ -5,6 +5,8 @@ draft: false
 tags: ["git", "github", "how-to"]
 ---
 
+This section shall contain short explanations about git and/or github in my own words. The official man page is often a little dense in information- at least for me.
+
 How to initialize git repository, add files, commit changes and push to existing github repository:
 
 ```bash
