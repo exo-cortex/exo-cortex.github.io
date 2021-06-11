@@ -5,7 +5,9 @@ draft: false
 math: true
 ---
 
-{{< figure src="/img/cuve__thing_dark.svg" title="[1] this shape is neither round nor oval." >}}
+{{< figure src="/img/curve_thing_dark.svg" title="[1] this shape is neither round nor oval." >}}
+
+{{ readFile "/static/img/curve_thing_dark.svg" | safeHTML }}
 
 A few years back I experimented with shapes that are *almost* round, but not quite yet. Imperfections that become irritations are very interesting for me. Imagine a round mirror, or a picture frame shaped like the object [1] above; would you immediately see that it isn't round? Most people would expect it to be round or oval and find it to slightly deviate from the norm. 
 

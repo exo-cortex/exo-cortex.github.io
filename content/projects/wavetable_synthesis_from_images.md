@@ -1,5 +1,5 @@
 ---
-title: "wavetable_synthesis_from_images"
+title: "wavetable synthesis with images"
 date: 2021-06-02T13:43:48+02:00
 draft: false
 ---
