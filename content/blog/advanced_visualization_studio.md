@@ -6,7 +6,13 @@ tags: [avs, visuals, procedural, art]
 hovervideo: true
 ---
 
-A looooong time ago around **2006** I began using **AVS** - [Advanced Visualization Studio](https://en.wikipedia.org/wiki/Advanced_Visualization_Studio) which came with the famous Winamp Media player. Winamp came with 2 visualization plugins - Milkdrop and AVS. The music visualizations used input from the music to create procedural art. The user could choose from a variety of *presets*. With AVS users could create their own presets, because AVS is its own little programming environment. As it compiles your code everytime you change something changes to the code can be seen in realtime. For me it was the first ever contact with coding that I had. A very sparse community of coders around the world made very nice visualization presets and discussed them. Since every preset would present its contents openly, everyone could simple change parameters of a given preset and thereby transform it - making a **remix** of a preset. This made possible that many presets would be remixed versions of previous ones. When presented with some mysterious code fragment, the user could simply change it and in realtime see the effects of this change. I used this approach a lot to reverse-engineer incomprehensible code. Unknowingly at the time I came into contact with a lot of concepts that I would later learn the names of in my physics studies: 
+A looooooong time ago in the year 2006 I began to play around with **AVS**. [Advanced Visualization Studio](https://en.wikipedia.org/wiki/Advanced_Visualization_Studio) came as a plugin with the famous Winamp Media player. Winamp had 2 plugins that rendered colorful procedural art that reacted to the music. These music visualization plugins were "Milkdrop" and "AVS". Typically the user would choose from a variety of *presets* that would then visualize the sound. 
+But in AVS users could actually create their own presets. Besides using precompiled effects that can be combined at will, AVS is also its own little **programming environment** with its own programming language [eel](http://eelang.org/). As AVS compiles your code everytime you change it the results from that change can be seen in realtime. This immediate realtime-compilation made AVS a fantastic tool for experimentation. 
+
+For me it was the first ever contact with coding that I had. A very sparse community of coders/artists around the world made very nice visualization presets and discussed them via the ancient [Winamp Forums](http://forums.winamp.com/forumdisplay.php?f=85). AVS presets were - and still are - a wonderful combination of programming and art. Different artists had very unique styles and esthetic expressions. Some presets were technically impressive, others were great from a design perspective. 
+Since every preset would present its contents openly, everyone could simply change parameters of a given preset and thereby transform it - **remixing** other people's presets was a big thing. This made possible that many presets would be remixed versions of previous ones. The simplest way of learning how another artist made a certain effect was to play around with the preset, change parameters and observe the effects. The result of this playful interaction was usually a new remix. I used this approach a lot to reverse-engineer incomprehensible code. 
+
+(Unknowingly at the time) I came into contact with a lot of concepts that would later reappear in my physics lectures: 
 In AVS I dealt with 
 - vector fields
 - numerical integration via the euler-method
@@ -15,7 +21,7 @@ In AVS I dealt with
 - reaction-diffusion-systems [2]
 - phase-oscillators [3]
 
-Below are a few short examples (without music) of what AVS could look like.
+Below are a few short looping examples (without music) of what AVS could look like.
 
 {{< video src="/video/trip.webm" type="video/webm" preload="false" width="200" >}}
 {{< video src="/video/try_one.webm" type="video/webm" preload="false" width="200" >}}
@@ -23,11 +29,12 @@ Below are a few short examples (without music) of what AVS could look like.
 
 <!-- {{< video src="/video/out.webm" type="video/webm" preload="false" width="600" >}} -->
 
-An AVS-preset is a list of effects that manipulate an input image in order to create an output image. For each frame AVS works through the list of effects.
+## AVS today and tomorrow
+AVS was never mainstream. It was significantly slower than its big brother "Milkdrop" and was therefor only suitable for low resolutions. But AVS made it possible to programm almost *anything*. The last version was released about 15 years ago and is thoroughly out of touch with modern processors, compilers and optimization methods. A few attempts have been made to update AVS, but most of them have been incomplete: Some effects that only exist as compiled binaries are not included in these versions. 
 
-Currently **Grandchild** is working at updating the ancient AVS source code. The idea is to make it compatible with modern compilers like GCC (with all their optimizations) and free it of its windows dependencies. Later it might even run in the browser where it might be (re-)integrated into the online Winamp player [webamp](https://webamp.org/). Ideally AVS could run even faster than it did 20 years as it could be optimized further or even run on a modern graphics cards. 
+Currently my friend **Grandchild** is working hard at updating the ancient AVS source code. The idea is to make it compatible with modern compilers like GCC and free it of its windows dependencies. Later it might even run in the browser where it might be (re-)integrated into the online Winamp player [webamp](https://webamp.org/). Ideally AVS could run even faster than it did 20 years as it could be optimized further or even run on a modern graphics cards. What is needed is simply an implementation of all its effects as shaders that can run on a GPU.
 
-[1] - my friend [**Grandchild**](https://github.com/grandchild) implemented *bezier-curves* into a preset which I then modified to draw a swarm of colorful lines each responding to its own spectral band in the music.
+[1] - [**Grandchild**](https://github.com/grandchild) implemented *bezier-curves* into a preset which I then modified to draw a swarm of colorful lines each responding to its own spectral band in the music.
 
 [2] - see my post about [reaction diffusion systems]({{< ref "/projects/reaction_diffusion.md" >}})
 
