@@ -1,7 +1,7 @@
 ---
 title: "hugo_shortcodes"
 date: 2021-06-04T16:15:04+02:00
-draft: false
+draft: true
 ---
 
 How to write a hugo shortcode.
