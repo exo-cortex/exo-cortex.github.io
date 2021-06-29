@@ -13,11 +13,14 @@ In my case I wanted to make the minimum distance adjustable, thereby varying the
 The algorithm is sketched beneath:
 
 ```python
+import random
+from quadtree import Rect, Quadtree
 
-domain = rectangle(0, 0, width, height)
+
+domain = Rect(0, 0, width, height)
 number_of_candidates = 25
 
-quadtree qt(domain)
+qt = QuadTree(domain)
 
 first_point = (width / 2, height / 2)
 points_list = [first_point]
@@ -28,13 +31,11 @@ point_counter = 1
 
 while (len(active_points) > 0):
     point_counter += 1
-    current_index = pick_random(active_points)
+    current_index = random.choice(active_points)
     current_x, current_y = points_list[current_index]
     minimum_radius = some_function(current_x, current_y)
-    
     for i in range(number_of_candidates):
-        candidate_point = make_candidate(points_list[current_active], minimum_radius)
-    
+        candidate_point = make_candidate(points_list[current_active].x, points_list[current_active].y , minimum_radius)
         if not qt.is_too_close(candidate_point) and domain.contains(candidate_point):
             qt.insert(candidate_point)
             points_list.append(candidate_point)
@@ -51,10 +52,11 @@ base_radius = 10
 
 def some_function(x , y):
 	r = math.sqrt((x - 1.5 * width/2) ** 2) + ((_y - height/2) ** 2))
-	return base_radius * (1.25 + math.cos( r * 0.075)) # varies between 0.25 and 2.25 times base_radius
+	return base_radius * (1.25 + math.cos( r * 0.075))
+    # varies between 0.25 and 2.25 times base_radius
 ```
 
-I find these images highly interesting. They consist of only individual elements, yet as a collection they can mimic continuous transitions between bright and dark areas.
+I find these images highly interesting. They consist of only individual elements, yet collectively they can mimic continuous gradients from bright and dark areas.
 
 ---
 [1] [Fast Poisson Disk Sampling in Arbitrary Dimensions](https://www.cct.lsu.edu/~fharhad/ganbatte/siggraph2007/CD2/content/sketches/0250.pdf)

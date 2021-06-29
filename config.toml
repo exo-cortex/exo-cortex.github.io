@@ -16,6 +16,7 @@ paginate=5 # articles per page
 [params]
 	mode="light" # color-mode → light,dark or auto
 	useCDN=false # don't use CDNs for fonts and icons, instead serve them locally.
+	subtitle = "space for my thoughts"
 	# subtitle = "Minimal and Clean [blog theme for Hugo](https://github.com/athul/archie)"
 
 # Social Tags
