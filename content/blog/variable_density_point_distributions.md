@@ -46,7 +46,7 @@ while (len(active_points) > 0):
 
 ```
 
-The deviation from the standard algorithm is that $d_min$ depends on the $x$ and $y$ coordinate of the active point. The point distribution uses the folling function:
+The deviation from the standard algorithm is that $d_min$ depends on the $x$ and $y$ coordinate of the active point. The point distribution uses the following function:
 ```python
 base_radius = 10
 
@@ -54,6 +54,14 @@ def some_function(x , y):
 	r = math.sqrt((x - 1.5 * width/2) ** 2) + ((_y - height/2) ** 2))
 	return base_radius * (1.25 + math.cos( r * 0.075))
     # varies between 0.25 and 2.25 times base_radius
+```
+
+The function to create new candidate points is simply creating a random point within the annulus region around the current active point:
+```python
+def make_candidate(anchor_x, anchor_y, minimum_radius):
+    angle = random.uniform(0, 2.0 * math.pi)
+    distance = random.uniform(1.0, 2.0) * minimum_radius
+    return (anchor_x + distance * math.cos(angle), anchor_y + distance * math.sin(angle))
 ```
 
 I find these images highly interesting. They consist of only individual elements, yet collectively they can mimic continuous gradients from bright and dark areas.
