@@ -1,7 +1,7 @@
 ---
 title: "variable density point distributions"
 date: 2021-06-28T14:43:57+02:00
-draft: true
+draft: false
 math: true
 ---
 
