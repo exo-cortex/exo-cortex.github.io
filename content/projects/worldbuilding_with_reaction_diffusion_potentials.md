@@ -43,3 +43,7 @@ The whole 3D-Landmass would probably be nice as a number of voronoi-3d-cells. (t
 Some things I have thought about but will spare for another time: Where does the "sun" come from? Will there be a day-night-cycle? How does 3D-weather work? Will there be seasons?
 
 If you have questions or further ideas, send me a message! (see about-page)
+
+---
+some tools that might be useful for implementing this:
+- [voro++](http://math.lbl.gov/voro++/) 3-dimensional voronoi tesselation library
