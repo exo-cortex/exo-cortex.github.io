@@ -9,7 +9,7 @@ I set up my Raspberry Pi 4 with Arch Linux [0]. Having totally forgotten how to 
 ## enabling the audio-shield
 
 For the [DAC2-Pro XLR](https://www.hifiberry.com/shop/boards/hifiberry-dac2-pro-xlr/) in the "/boot/config.txt" file add the following lines:
-```
+```bash
 #hifiberry shield DAC+ XLR
 dtoverlay=hifiberry-dacplus
 device_tree_param=spi=on
@@ -21,7 +21,7 @@ device_tree_param=spi=on
 
 Access to the audio-card by default (at least on Arch Linux (ARM)) is allowed only to the root user. If you run any audio-related commands they will fail or return unsatisfying results. For example if you want to list all of the Raspberry Pi's audio devices by running the command
 
-```
+```bash
 aplay -l
 ```
 It will not return the expected list of devices.
