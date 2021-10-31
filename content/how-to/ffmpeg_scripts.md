@@ -5,7 +5,7 @@ draft: false
 tags: [ffmpeg, help, how-to]
 ---
 
-How to use ffmpeg. 
+using ffmpeg. 
 I use ffmpeg to convert videos from one format to the other. In order to create small video files from gifs I use this script:
 
 ```bash

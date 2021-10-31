@@ -4,10 +4,9 @@ date: 2021-06-02T16:20:26+02:00
 draft: false
 ---
 
-I often use [**Imagemagick**](https://en.wikipedia.org/wiki/ImageMagick) for simple image-manipulation from the commandline. The the program is invoked via the "convert"-command. 
+I often use [**Imagemagick**](https://en.wikipedia.org/wiki/ImageMagick) for simple image-manipulation from the commandline. To use the program run the command "convert".
 
-Here is a list of useful commands for simple image manipulation like resizing, cropping or conversion from one format to another. This list exists , because I realized that I had to re-google some commands everytime I was using them.
-
+The following is a collection of useful commands for simple image manipulation like resizing, cropping or conversion from one format to another. This collection exists, because I realized that I had to re-google some commands everytime I was using them.
 
 ## conversion between formats
 ```bash

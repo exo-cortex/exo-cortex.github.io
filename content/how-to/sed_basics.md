@@ -7,10 +7,11 @@ tags: [bash, linux, commandline]
 
 # what is sed?
 
-sed is a "stream editor" usable from the commandline. It can do a lot of things and I wrote down some basics examples here (so I don't have to google them repeatedly). A great and very thorough guide can be found elsewhere [0]. I only post the most useful examples that I needed so far.
+sed is a "stream editor" in the commandline. It can do a lot of things and I wrote down some basics examples here (to avoid re-googling them in a few months). A great and very thorough guide can be found elsewhere [0]. I only post the most useful examples that I needed so far.
 
 sed typically works by reading an input string, looks for patterns and does something with these patterns. See this basic example:
 ```bash
+# replace "a " with "not a "
 $ echo "this is a sentence." | sed 's/a /not a /'
 ```
 The echo command prints "this is a sentence." and pipes the result (with the "|"-character) to sed which replaces "a " with "not a ". Usually the sed command is followed by 's/PATTERN/REPLACEMENT/'.
