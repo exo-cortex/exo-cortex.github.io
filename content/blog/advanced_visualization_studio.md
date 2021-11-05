@@ -18,9 +18,9 @@ In AVS I dealt with
 - numerical integration via the euler-method
 - convolutions
 - matrix-multiplications (for rotations)
-- bezier-curves [1]
-- reaction-diffusion-systems [2]
-- phase-oscillators [3]
+- bezier-curves [^1]
+- reaction-diffusion-systems [^2]
+- phase-oscillators [^3]
 
 Below are a few short looping examples (without music) of what AVS could look like.
 
@@ -35,8 +35,8 @@ AVS was never mainstream. It was significantly slower than its big brother "Milk
 
 Currently Grandchild is working hard at [updating the ancient AVS](https://github.com/grandchild/vis_avs). The idea is to make it compatible with modern compilers like GCC and free it of its windows dependencies. Later it might even run in the browser where it might be (re-)integrated into the online Winamp player [webamp](https://webamp.org/). Ideally AVS could run even faster than it did 20 years ago as it could be optimized further or even run on a modern graphics cards. What is needed is an implementation of all its effects as shaders that can run on a GPU. Some effects are easy to implement, others might even be impossible. A major challenge is the missing source code for some of the effects. This made it necessary to disassemble certain binaries and comprehend it. Some of the more advanced effects use a lot of assembler which make them extra challenging. But Grandchild is slowly but surely progressing and has actually made it much further than previous attempts of updating this ancient and complicated piece of code. 
 
-[1] - my friend [Grandchild](https://github.com/grandchild) implemented *bezier-curves* into a preset which I then modified to draw a swarm of colorful lines each responding to its own spectral band in the music.
+[^1]: my friend [Grandchild](https://github.com/grandchild) implemented *bezier-curves* into a preset which I then modified to draw a swarm of colorful lines each responding to its own spectral band in the music.
 
-[2] - see my post about [reaction diffusion systems]({{< ref "/projects/reaction_diffusion.md" >}})
+[^2]: see my post about [reaction diffusion systems]({{< ref "/projects/reaction_diffusion.md" >}})
 
-[3] - somehow related to [2] - phase oscilators became central in my bachelor- and master-thesis 
+[^3]: somehow related to [^2] - phase oscilators became central in my bachelor- and master-thesis 
