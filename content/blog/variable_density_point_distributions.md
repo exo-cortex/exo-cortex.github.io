@@ -7,7 +7,7 @@ math: true
 
 ![a distribution of dots](/img/points_wave.svg)
 
-I *finally* implemented my own version of the [poisson disk sampling algorithm](https://en.wikipedia.org/wiki/Supersampling#Poisson_disk). The standard algorithm places points on a 2D plane with a minimum distance $d_{min}$ between them until there is no more space for additional points. The distribution of the distances of adjacent points is a poisson distribution - hence the name. Robert Bridson described an efficient algorithm to create these samplings [1]. It uses a grid to store the points in them. This way every new candidate point can check adjacent grid cells for existing points that might be closer than $d_{min}$. If none are too close the candidate becomes a new sample point.
+I *finally* implemented my own version of the [poisson disk sampling algorithm](https://en.wikipedia.org/wiki/Supersampling#Poisson_disk). The standard algorithm places points on a 2D plane with a minimum distance $d_{min}$ between them until there is no more space for additional points. The distribution of the distances of adjacent points is a poisson distribution - hence the name. Robert Bridson described an efficient algorithm to create these samplings [^1]. It uses a grid to store the points in them. This way every new candidate point can check adjacent grid cells for existing points that might be closer than $d_{min}$. If none are too close the candidate becomes a new sample point.
  
 In my case I wanted to make the minimum distance adjustable, thereby varying the point density (see image above). The original method of saving points in a background grid does not work, as the grid has to be finer in some and coarser in other areas. A [quadtree](https://en.wikipedia.org/wiki/Quadtree) is ideal for this. I tried to implement my own quadtree in C++, but failed unfortunately. Instead I opted to implement it in python first and maybe later recreate a faster version in C++. I found a nice [quadtree implementation in python](https://scipython.com/blog/quadtrees-2-implementation-in-python/) and added a method to simply check if the quadtree contains a point that is closer than $d_{min}$ to an input point.
 
@@ -70,7 +70,7 @@ def make_candidate(anchor_x, anchor_y, minimum_radius):
 I find these images highly interesting. They consist of only individual elements, yet collectively they can mimic continuous gradients from bright and dark areas.
 
 ---
-[1] [Fast Poisson Disk Sampling in Arbitrary Dimensions](https://www.cct.lsu.edu/~fharhad/ganbatte/siggraph2007/CD2/content/sketches/0250.pdf)
+[^1]: [Fast Poisson Disk Sampling in Arbitrary Dimensions](https://www.cct.lsu.edu/~fharhad/ganbatte/siggraph2007/CD2/content/sketches/0250.pdf)
 
 ---
 more images:
