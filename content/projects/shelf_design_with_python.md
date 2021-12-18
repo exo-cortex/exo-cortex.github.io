@@ -2,6 +2,7 @@
 title: "shelf_design_with_python"
 date: 2021-07-04T17:02:39+02:00
 draft: false
+tags: [python, woodworking]
 ---
 
 ![my current shelf design](/img/shelf.svg)

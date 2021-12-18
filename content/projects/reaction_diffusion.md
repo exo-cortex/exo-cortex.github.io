@@ -3,6 +3,7 @@ title: "reaction_diffusion_systems"
 date: 2021-05-30T12:46:17+02:00
 draft: false
 math: true
+tags: [procedural, art, math, reaction-diffusion]
 ---
 
 ![raction diffusion pattern](/img/reaction_diffusion_crop.svg)
