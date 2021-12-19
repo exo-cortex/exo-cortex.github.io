@@ -3,7 +3,6 @@ title: "oval_relatives"
 date: 2021-05-31T11:15:00+02:00
 draft: false
 math: true
-tags: [art, math, curves]
 ---
 
 {{< figure src="/img/curve_thing_dark.svg" title="[1] this shape is neither round nor oval." >}}
@@ -33,7 +32,7 @@ Graphic designers already now the concept of an "offset curve", known in math as
 To make things short, given the two functions $x(\phi)$ and $y(\phi)$ describing the $x$ and $y$ coordinates of a curve $\mathbf{v}(\phi)$ we can define the parallel curve $\mathbf{v}_d(\phi)$ with offset $o$ as
 
 $$ 
-    \mathbf{v}_d(\phi) = \mathbf{v}(\phi) + d \times \overbrace{\begin{pmatrix} y'(\phi) \\\\ -x'(\phi) \end{pmatrix} \times \frac{1}{\sqrt{x'(\phi)^2+y'(\phi)^2}}}^{\text{orthonormal vector}}.
+    \mathbf{v}_d(\phi) = \mathbf{v}(\phi) + d \times \overbrace{\begin{pmatrix} \frac{ y'(\phi)}{\sqrt{x'(\phi)^2+y'(\phi)^2}} \\\\ \frac{ y'(\phi)}{\sqrt{x'(\phi)^2+y'(\phi)^2}} \end{pmatrix}}^{\text{orthonormal vector}}.
 $$
 
 In words: We follow the original curve $\mathbf{v}$ and at each point we go into the direction orthonormal - i.e. orthogonal/perpendicular _and_ normalized to unit length of $1$ - to the tangent of the curve at that point.

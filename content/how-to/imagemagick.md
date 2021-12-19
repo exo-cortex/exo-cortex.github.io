@@ -2,7 +2,6 @@
 title: "easy image manipulation using imagemagick"
 date: 2021-06-02T16:20:26+02:00
 draft: false
-tags: [bash, commandline, imagemagick]
 ---
 
 I often use [**Imagemagick**](https://en.wikipedia.org/wiki/ImageMagick) for simple image-manipulation from the commandline. To use the program run the command "convert".

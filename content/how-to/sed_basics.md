@@ -2,7 +2,7 @@
 title: "sed_basics"
 date: 2021-10-30T12:09:13+02:00
 draft: false
-tags: [bash, linux, commandline, sed]
+tags: [bash, linux, commandline]
 ---
 
 # what is sed?

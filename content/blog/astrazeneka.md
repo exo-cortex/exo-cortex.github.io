@@ -6,7 +6,3 @@ draft: false
 
 Yesterday I got my vaccine. Finally. 
 Last night and since I've been feeling quite under the weather. Slight fever, a pumping headache and general drowsiness seems to be part of the general experience. Tomorrow should be better.
-
-**update**
-
-I got my second vaccination from biontec on 8 of august.
