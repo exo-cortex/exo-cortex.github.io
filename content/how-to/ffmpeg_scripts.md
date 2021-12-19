@@ -2,7 +2,7 @@
 title: "ffmpeg_scripts"
 date: 2021-05-30T20:09:19+02:00
 draft: false
-tags: [ffmpeg, help, how-to]
+tags: [bash, commandline, ffmpeg, how-to]
 ---
 
 using ffmpeg. 

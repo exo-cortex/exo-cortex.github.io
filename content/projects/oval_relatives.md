@@ -3,6 +3,7 @@ title: "oval_relatives"
 date: 2021-05-31T11:15:00+02:00
 draft: false
 math: true
+tags: [math, curves, design]
 ---
 
 {{< figure src="/img/curve_thing_dark.svg" title="[1] this shape is neither round nor oval." >}}

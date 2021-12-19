@@ -2,6 +2,7 @@
 title: "astrazeneka"
 date: 2021-05-29T19:10:14+02:00
 draft: false
+tags: [offtopic]
 ---
 
 Yesterday I got my vaccine. Finally. 

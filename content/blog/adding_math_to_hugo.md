@@ -3,6 +3,7 @@ title: "adding math to hugo"
 date: 2021-05-26T18:47:06+02:00
 draft: false
 math: true
+tags: [hugo, math]
 ---
 
 with the help of this nice [**explanation**](https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/) I was able to add math-typesetting to my blog. The framework is **KaTeX** and it supports a [variety](https://katex.org/docs/supported.html#sqrt) of **LaTeX** math typesetting.

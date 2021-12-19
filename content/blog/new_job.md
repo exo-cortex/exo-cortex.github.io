@@ -2,6 +2,7 @@
 title: "new_job / dark matter"
 date: 2021-09-30T18:18:31+02:00
 draft: false
+tags: [job, art, visuals, light]
 ---
 
 Last month I started working at [Dark Matter](darkmatter.berlin) in Berlin. Dark matter is an exhibition space showing various kinetic audiovisual art-pieces conceived by [Christopher Bauder](https://en.wikipedia.org/wiki/Christopher_Bauder). They mostly use special DMX-controlled winches to move glowing light-elements precisely up and down. Collectively the winches create moving and morphing objects in space in sync with musical soundscapes. 

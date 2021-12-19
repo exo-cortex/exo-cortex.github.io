@@ -2,6 +2,7 @@
 title: "wavetable synthesis with images"
 date: 2021-06-02T13:43:48+02:00
 draft: false
+tags: [audio, synthesis]
 ---
 
 Any sound can become a tone if we repeat it very quickly. The repetition rate becomes the base-frequency of that tone. If we repeat the sample of a basedrum with **1 Hz** the base frequency is **1 Hz** - well below our hearing range. If we increase the repetition rate to **50 Hz** we can actually hear it. 

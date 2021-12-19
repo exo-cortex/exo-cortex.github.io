@@ -2,6 +2,7 @@
 title: "hifiberry_and_mpd_on_raspberry_pi"
 date: 2021-10-16T14:45:23+02:00
 draft: false
+tags: [raspberry pi, audio, hifiberry]
 ---
 
 I set up my Raspberry Pi 4 with Arch Linux [0]. Having totally forgotten how to make it work with the **Hifiberry DAC+ XLR** audio shield I had to google, read and understand everything again. In order to avoid this hassle and not waste so much fucking time again (and hopefully help some lost souls on the internet in the process) I'm writing everything down here.
