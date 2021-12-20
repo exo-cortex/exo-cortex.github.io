@@ -1,7 +1,7 @@
 ---
 title: "vintage_yamaha"
 date: 2021-12-20T15:54:03+01:00
-draft: true
+draft: false
 tags: [audio, vintage, design]
 ---
 
