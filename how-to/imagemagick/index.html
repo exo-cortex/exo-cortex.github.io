@@ -9,6 +9,7 @@ conversion between formats $ convert input_image.png -quality 90 output_image.jp
 <a href=/how-to>how-to</a>
 <a href=/projects>projects</a>
 <a href=/tags>tags</a>
+<a href=/blogroll/blogroll>blogroll</a>
 <a href=/about/about/>about</a></nav></header><main><article><div class=title><h1 class=title>easy image manipulation using imagemagick</h1><div class=meta>posted: Jun 2, 2021</div></div><section class=body><p>I often use <a href=https://en.wikipedia.org/wiki/ImageMagick><strong>Imagemagick</strong></a> for simple image-manipulation from the commandline. To use the program run the command &ldquo;convert&rdquo;.</p><p>The following is a collection of useful commands for simple image manipulation like resizing, cropping or conversion from one format to another. This collection exists, because I realized that I had to re-google some commands everytime I was using them.</p><h2 id=conversion-between-formats>conversion between formats</h2><div class=highlight><pre style=-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ convert input_image.png -quality <span style=color:#666>90</span> output_image.jpg
 <span style=color:#408080;font-style:italic># or set output format through &#34;-format&#34;-option</span>
 $ convert input_image.png -quality <span style=color:#666>90</span> -format jpg output_image
