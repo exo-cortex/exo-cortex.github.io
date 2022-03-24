@@ -7,7 +7,7 @@ tags: [audio, vintage, design]
 
 # love at first sight
 
-Last month got two pieces of very old audio equipment off of eBay-kleinanzeigen. Admittedly I mostly got interested in the amp, because of its *gorgeous* design. While reading up on it[^1] I discovered that it was tremendously well received when Yamaha introduced it in 1981. Then it cost 1,200 DM (1,367 Euros in 2021[^2]). As I still like to listen to the radio naturally I needed a nice tuner as well.  
+Last month I bought two pieces of very old audio equipment off of eBay-kleinanzeigen. Admittedly I got interested in the amp, mainly because of its *gorgeous* design. While reading up on it[^1] I discovered that it was tremendously well received when Yamaha introduced it in 1981. Back then it cost 1,200 DM (1,367 Euros in 2021[^2]). As I still like to listen to the radio naturally I needed a nice tuner as well.
 
 {{<figure src="/img/yamaha_front.jpg" title="front view">}}
 {{<figure src="/img/yamaha_tuner_right.jpg" title="signal reception indicator of the tuner">}}
