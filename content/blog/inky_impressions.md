@@ -1,6 +1,7 @@
 ---
 title: "new toy: 7-color e-ink display"
 date: 2021-12-06T12:03:09+01:00
+update: 2022-05-17T12:02:00
 draft: false
 tags: [raspberry pi, e-ink, pimorony, art]
 ---
@@ -15,10 +16,16 @@ With about 85mm x 115mm it is comparable to typical e-reader display sizes. Alth
 {{<figure src="/img/inky_paris_2.jpg" title="a closup of the image">}}
 {{<figure src="/img/inky_paris_3.jpg" title="even closer closup">}}
 
-# plans for the display
-One thing I want do is put the display in a nice frame with a perfect-fit fine paper mat [^5]. Ideally the mat makes the display look like regular paper. Then it would appear like a regular art piece that surprises people when it shows different images at different times.
 
-Furthermore I want to check out the code from the repository a bit more and see how and when dithering is applied. I like the look of dither quite a bit, although it fits less for images related to pixel art. As the display applies dither on default I have to make images that only use the 7 primary colors of the image. This blog post will be updated. With new images.
+# update: e-paper display in a frame
+After ordering a paper mat[^5] and frame of fitting size for the display I *finally* went on and build a fixure so that the display would stay at the right position behind the opening.  I used 3mm gray paperboard and cut it to size. 
+{{<figure src="/img/inky_frame_fixture_1_small.jpg" title="lalala">}}
+{{<figure src="/img/inky_frame_fixture_2_small.jpg" title="lalala">}}
+
+The framed display already aced its first test passing as a regular paper print, when my girlfriend didn't notice anything about it.
+
+**next up**:
+writing some scripts that automatically resize, crop and put images onto the display. Also some scripts that show weather information.
 
 [^1]: https://en.wikipedia.org/wiki/Electronic_paper
 [^2]: https://shop.pimoroni.com/products/inky-impression
