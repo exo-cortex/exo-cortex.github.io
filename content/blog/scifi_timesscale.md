@@ -11,5 +11,5 @@ I added a few time units as well as some extra pieces of information - like the 
 
 Feel free to download this scale. Once I tidy up my code a little I might publish the source code as well (I made it with Rust as an exercise.)
 
-![a distribution of dots](/img/scifi_time_scale.svg)
+[![a distribution of dots](/img/scifi_time_scale.svg)](/img/scifi_time_scale.svg)
 
