@@ -8,7 +8,7 @@ tags: [math, curves, design]
 
 {{< figure src="/img/curve_thing_dark.svg" title="[1] this shape is neither round nor oval." >}}
 
-A few years back I experimented with shapes that are *almost* round, but not quite yet. Imperfections that become irritations are very interesting for me. Imagine a round mirror, or a picture frame shaped like the object [1] above; would you immediately see that it isn't round? Most people would expect it to be round or oval and find it to slightly deviate from the norm. 
+A few years back I experimented with shapes that are *almost* round, but not quite yet. Slight Imperfections that become irritations are very interesting for me. Imagine a round mirror, or a picture frame shaped like the object [1] above — would you immediately see that it isn't round? Most people would subconsciously expect it to be round or oval and find it to slightly deviate from the norm. 
 
 ### 1. the basic shape
 
@@ -28,7 +28,7 @@ $$ f(\phi) = \sum_{i=1}^{N} a_i \sin(i\phi + \theta_i) $$
 
 ### 2. offset curves
 
-Graphic designers already now the concept of an "offset curve", known in math as a [parallel curve](https://en.wikipedia.org/wiki/Parallel_curve). If we draw parallel curves outside or inside our curve $\mathbf{v}$ we can make beautiful parallel curves $\mathbf{v}_1, \mathbf{v}_2, ...$. The outer dark curve in [1] is such a parallel curve derived from the edge of the red shape.
+Graphic designers already know "offset curves", known in math as a [parallel curve](https://en.wikipedia.org/wiki/Parallel_curve). If we draw parallel curves outside or inside our curve $\mathbf{v}$ we can make beautiful parallel curves $\mathbf{v}_1, \mathbf{v}_2, ...$. The outer dark curve in [1] is such a parallel curve derived from the edge of the red shape.
 
 To make things short, given the two functions $x(\phi)$ and $y(\phi)$ describing the $x$ and $y$ coordinates of a curve $\mathbf{v}(\phi)$ we can define the parallel curve $\mathbf{v}_d(\phi)$ with offset $o$ as
 
