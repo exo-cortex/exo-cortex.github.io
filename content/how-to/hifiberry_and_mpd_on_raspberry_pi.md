@@ -1,11 +1,12 @@
 ---
 title: "hifiberry_and_mpd_on_raspberry_pi"
 date: 2021-10-16T14:45:23+02:00
+update: 2022-01-10T22:45:00+02:00
 draft: false
 tags: [raspberry pi, audio, hifiberry]
 ---
 
-I set up my Raspberry Pi 4 with Arch Linux [0]. Having totally forgotten how to make it work with the **Hifiberry DAC+ XLR** audio shield I had to google, read and understand everything again. In order to avoid this hassle and not waste so much fucking time again (and hopefully help some lost souls on the internet in the process) I'm writing everything down here.
+I set up my Raspberry Pi 4 with Arch Linux [^0]. Having totally forgotten how to make it work with the **Hifiberry DAC+ XLR** audio shield I had to google, read and understand everything again. In order to avoid this hassle and not waste so much fucking time again (and hopefully help some lost souls on the internet in the process) I'm writing everything down here.
 
 ## enabling the audio-shield
 
@@ -16,7 +17,7 @@ dtoverlay=hifiberry-dacplus
 device_tree_param=spi=on
 ```
 
-(If you are using a different audio shield, hifiberry has a list of all the parameters [1].)
+(If you are using a different audio shield, hifiberry has a list of all the parameters [^1].)
 
 ## allowing your user access to the raspberry pi's audio card
 
@@ -37,5 +38,10 @@ Now you should be able to run commands that make sound through the Hifiberry.
 mpd now suddenly worked after I scratched my head for a day trying everything out.
 cheers.
 
-- [0] [archlinuxarm.org](archlinuxarm.org)
-- [1] https://www.hifiberry.com/docs/software/configuring-linux-3-18-x/
+## setting up mpd[^2] as a system service
+
+by setting up mpd 
+
+- [^0]: [archlinuxarm.org](archlinuxarm.org)
+- [^1]: https://www.hifiberry.com/docs/software/configuring-linux-3-18-x/
+- [^2]: [music player daemon](https://en.wikipedia.org/wiki/Music_Player_Daemon)
