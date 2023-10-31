@@ -37,6 +37,6 @@ Currently Grandchild is working hard at [updating the ancient AVS](https://githu
 
 [^1]: my friend [Grandchild](https://github.com/grandchild) implemented *bezier-curves* into a preset which I then modified to draw a swarm of colorful lines each responding to its own spectral band in the music.
 
-[^2]: see my post about [reaction diffusion systems]({{< ref "/projects/reaction_diffusion.md" >}})
+[^2]: see my post about [reaction diffusion systems]({{< ref "/blog/reaction_diffusion.md" >}})
 
 [^3]: somehow related to [^2] - phase oscilators became central in my bachelor- and master-thesis 
