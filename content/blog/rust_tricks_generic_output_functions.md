@@ -6,7 +6,7 @@ tags: [rust, traits, generics]
 ---
 
 I'm re-writing my [network-delay-differential-equations-solver](https://github.com/exo-cortex/dynamical_system_in_rust) from my master thesis --- this time in Rust (of course!). The idea is to learn more about the language. That's why I try to tackle problems by using clever new approaches that Rust enables me to do. 
-Along the way I there've been a few tricks that I learned or that nice people taught me which made it or will make it into the program. This one came from a friend who's much more experienced in such things:
+Along the way I there've been a few tricks that I learned or that nice people taught me which made it or will make it into the program. This one came from a someone [(eqv)](https://github.com/eqv) who's much more experienced in such things:
 
 # Neat trick #1
 
