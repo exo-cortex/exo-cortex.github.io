@@ -2,6 +2,7 @@
 title: "rust_tricks_generic_output_functions"
 date: 2023-10-30T22:02:05+01:00
 draft: false
+tags: [rust, traits, generics]
 ---
 
 I'm re-writing my [network-delay-differential-equations-solver](https://github.com/exo-cortex/dynamical_system_in_rust) from my master thesis --- this time in Rust (of course!). The idea is to learn more about the language. That's why I try to tackle problems by using clever new approaches that Rust enables me to do. 
