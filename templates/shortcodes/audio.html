@@ -1,0 +1,35 @@
+{% set ext = src | split(pat=".") | last %}
+{% if ext == "webm" %}
+  {% set mime = "audio/webm; codecs=opus" %}
+{% elif ext == "ogg" or ext == "opus" %}
+  {% set mime = "audio/ogg; codecs=vorbis" %}
+{% elif ext == "mp3" %}
+  {% set mime = "audio/mpeg" %}
+{% elif ext == "m4a" %}
+  {% set mime = "audio/mp4" %}
+{% else %}
+  {% set mime = "audio/" ~ ext %}
+{% endif %}
+
+{% if fallback is defined %}
+  {% set fb_ext = fallback | split(pat=".") | last %}
+  {% if fb_ext == "mp3" %}
+    {% set fb_mime = "audio/mpeg" %}
+  {% elif fb_ext == "m4a" %}
+    {% set fb_mime = "audio/mp4" %}
+  {% elif fb_ext == "ogg" %}
+    {% set fb_mime = "audio/ogg; codecs=vorbis" %}
+  {% else %}
+    {% set fb_mime = "audio/" ~ fb_ext %}
+  {% endif %}
+{% endif %}
+
+<div class="media-block audio-block">
+  {% if caption %}<p class="media-caption">{{ caption }}</p>{% endif %}
+  <audio controls preload="{{ preload | default(value='metadata') }}">
+    <source src="{{ src }}" type="{{ mime }}">
+    {% if fallback is defined %}
+    <source src="{{ fallback }}" type="{{ fb_mime }}">
+    {% endif %}
+  </audio>
+</div>

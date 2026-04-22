@@ -1,0 +1,6 @@
+<div class="media-block" {% if width %}style="max-width: {{ width }}px;"{% endif %}>
+  <img src="{{ src }}" alt="{{ caption | default(value=title | default(value='')) }}">
+  {% if title or caption %}
+  <p class="media-caption">{{ caption | default(value=title) }}</p>
+  {% endif %}
+</div>

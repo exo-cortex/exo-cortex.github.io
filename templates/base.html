@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+  <link rel="stylesheet" href="{{ get_url(path='main.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
+  {% if page is defined and page.extra.math %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  {% endif %}
+</head>
+<body>
+<div class="content">
+
+  <header>
+    <a class="site-title" href="{{ config.base_url }}">{{ config.title }}</a>
+    <nav>
+      <a href="{{ config.base_url }}"{% if current_path == "/" %} class="active"{% endif %}>home</a>
+      <a href="{{ get_url(path='@/blog/_index.md') }}"{% if current_path is starting_with("/blog") %} class="active"{% endif %}>blog</a>
+      <a href="{{ get_url(path='@/know_how/_index.md') }}"{% if current_path is starting_with("/know_how") %} class="active"{% endif %}>know-how</a>
+      <a href="{{ config.base_url }}/tags"{% if current_path is starting_with("/tags") %} class="active"{% endif %}>tags</a>
+      <a href="{{ get_url(path='@/about.md') }}"{% if current_path is starting_with("/about") %} class="active"{% endif %}>about</a>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}{% endblock content %}
+  </main>
+
+  <footer>
+    <p>{{ config.title }} &mdash; {% if config.extra.author %}{{ config.extra.author }}{% endif %}</p>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('video.videoloop').forEach(v => {
+    v.addEventListener('mouseenter', () => v.play());
+    v.addEventListener('mouseleave', () => {
+      v.pause();
+      if (v.hasAttribute('data-reset')) v.currentTime = 0;
+    });
+  });
+</script>
+</body>
+</html>

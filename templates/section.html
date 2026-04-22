@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block title %}{{ section.title }} &mdash; {{
+config.title }}{% endblock title %} {% block content %}
+<h1>{{ section.title }}</h1>
+
+<ul class="post-list">
+    {% for post in section.pages %}
+    <li class="post-list-item">
+        <a href="{{ post.permalink }}">{{ post.title }}</a>
+        <span class="post-list-meta">
+            {% if post.extra.update %}<span class="updated-marker">update</span
+            >{% endif %}
+            <time datetime="{{ post.date }}"
+                >{{ post.date | date(format="%Y-%m-%d") }}</time
+            >
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock content %}

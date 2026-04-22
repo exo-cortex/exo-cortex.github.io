@@ -1,0 +1,6 @@
+<div class="media-block" {% if width %}style="max-width: {{ width }}px;"{% endif %}>
+  <video controls preload="{{ preload | default(value='auto') }}">
+    <source src="{{ src }}" type="{{ type | default(value='video/webm') }}">
+  </video>
+  {% if caption %}<p class="media-caption">{{ caption }}</p>{% endif %}
+</div>

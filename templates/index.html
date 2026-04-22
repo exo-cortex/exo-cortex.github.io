@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block title %}{{ config.title }}{% endblock title
+%} {% block content %}
+<p>{{ config.extra.subtitle | default(value="") }}</p>
+
+<hr />
+
+{% set blog = get_section(path="blog/_index.md") %}
+<ul class="post-list">
+    {% for post in blog.pages %}
+    <li class="post-list-item">
+        <a href="{{ post.permalink }}">{{ post.title }}</a>
+        <span class="post-list-meta">
+            {% if post.extra.update %}<span class="updated-marker">update</span
+            >{% endif %}
+            <time datetime="{{ post.date }}"
+                >{{ post.date | date(format="%Y-%m-%d") }}</time
+            >
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock content %}

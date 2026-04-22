@@ -1,0 +1,364 @@
+@use "variables" as *;
+
+// ── Reset & base ──────────────────────────────────────────────
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    color: $text;
+    background-color: $bg;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 16px;
+    /* font-weight: 400; */
+    line-height: 1.6;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+// ── Layout ────────────────────────────────────────────────────
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+}
+
+// ── Typography ────────────────────────────────────────────────
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 1.1rem;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    font-style: italic;
+}
+
+h1::before {
+    color: $accent;
+    content: "# ";
+}
+h2::before {
+    color: $accent;
+    content: "## ";
+}
+h3::before {
+    color: $accent;
+    content: "### ";
+}
+h4::before {
+    color: $accent;
+    content: "#### ";
+}
+h5::before {
+    color: $accent;
+    content: "##### ";
+}
+h6::before {
+    color: $accent;
+    content: "###### ";
+}
+
+p {
+    margin: 0.8em 0;
+}
+
+hr {
+    border: 0;
+    border-top: 3px dotted $border;
+    margin: 2em 0;
+}
+
+blockquote {
+    border-left: 3px solid $border;
+    color: $muted;
+    margin: 1em 0;
+    padding-left: 1em;
+}
+
+// ── Links ─────────────────────────────────────────────────────
+a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 2px solid $accent;
+}
+
+a:hover {
+    background-color: $hover-bg;
+    color: $hover-fg;
+}
+
+// ── Code ──────────────────────────────────────────────────────
+code {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.9em;
+    background-color: $code-bg;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+}
+
+pre {
+    background-color: $pre-bg;
+    padding: 1em;
+    overflow-x: auto;
+    border-radius: 4px;
+
+    code {
+        background: none;
+        padding: 0;
+        font-size: 0.88em;
+    }
+}
+
+// ── Images ────────────────────────────────────────────────────
+img {
+    max-width: 100%;
+    border: 2px solid #ececec;
+}
+
+// ── Video loop ────────────────────────────────────────────────
+.media-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.videoloop {
+    flex: 1;
+    min-width: 120px;
+    max-width: 100%;
+    display: block;
+    border: 2px solid #ececec;
+    cursor: pointer;
+    transition: border-color 0.15s;
+
+    &:hover {
+        border-color: $accent;
+    }
+}
+
+// ── Media blocks (figure, video, audio shortcodes) ────────────
+.media-block {
+    margin: 1.5em 0;
+    width: 100%;
+
+    img,
+    video {
+        display: block;
+        width: 100%;
+        border: 2px solid #ececec;
+    }
+}
+
+.media-caption {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.8rem;
+    color: $muted;
+    margin: 0.3em 0 0;
+
+    &::before {
+        content: "↳ ";
+        color: $accent;
+    }
+}
+
+.audio-block {
+    background-color: $code-bg;
+    padding: 0.8em 1em;
+    border-left: 3px solid $accent;
+
+    audio {
+        display: block;
+        width: 100%;
+        margin-top: 0.4em;
+    }
+
+    .media-caption {
+        margin: 0 0 0.4em;
+        font-size: 0.85rem;
+        color: $text;
+
+        &::before {
+            content: "♪ ";
+        }
+    }
+}
+
+// ── Header ────────────────────────────────────────────────────
+header {
+    padding: 1.5rem 0 1rem;
+    border-bottom: 3px dotted $border;
+    margin-bottom: 2rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.site-title {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-bottom: none;
+
+    &:hover {
+        background: none;
+        color: $accent;
+    }
+}
+
+nav {
+    display: flex;
+    gap: 1.2rem;
+
+    a {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.9rem;
+        border-bottom: none;
+        color: $muted;
+
+        &:hover {
+            background: none;
+            color: $accent;
+        }
+
+        &.active {
+            color: $accent;
+        }
+    }
+}
+
+// ── Footer ────────────────────────────────────────────────────
+footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 3px dotted $border;
+    color: $muted;
+    font-size: 0.85rem;
+    font-family: "IBM Plex Mono", monospace;
+}
+
+// ── Post list ─────────────────────────────────────────────────
+.post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #ececec;
+
+    a {
+        border-bottom: none;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.95rem;
+
+        &:hover {
+            background: none;
+            color: $accent;
+        }
+    }
+}
+
+.post-list-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    white-space: nowrap;
+    font-family: "IBM Plex Mono", monospace;
+
+    time {
+        color: $muted;
+        font-size: 0.85rem;
+    }
+}
+
+.updated-marker {
+    font-size: 0.75rem;
+    color: $accent;
+    font-family: "IBM Plex Mono", monospace;
+}
+
+// ── Post meta (single page) ───────────────────────────────────
+.post-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.85rem;
+    color: $muted;
+
+    .updated {
+        color: $border;
+    }
+}
+
+// ── Single post ───────────────────────────────────────────────
+.post-header {
+    margin-bottom: 2rem;
+
+    h1 {
+        margin-top: 0;
+        font-size: 1.4rem;
+    }
+
+    .post-meta {
+        color: $muted;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.85rem;
+    }
+}
+
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.5rem;
+}
+
+.tag-pill {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4em;
+    padding: 0.15em 0.55em;
+    background-color: $code-bg;
+    border: 1px solid #d8d8d8;
+    border-bottom: 1px solid #d8d8d8; // override global link border
+    border-radius: 3px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.82rem;
+    color: $text;
+    text-decoration: none;
+
+    &:hover {
+        background-color: $accent;
+        border-color: $accent;
+        color: $hover-fg;
+    }
+}
+
+.tag-count {
+    font-size: 0.75em;
+    color: $muted;
+    padding-left: 0.2em;
+
+    .tag-pill:hover & {
+        color: rgba(255, 255, 255, 0.75);
+    }
+}

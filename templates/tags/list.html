@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}tags &mdash; {{ config.title }}{% endblock title %}
+
+{% block content %}
+<h1>tags</h1>
+
+<div class="tag-cloud" id="tag-cloud">
+  {% for tag in terms %}
+  <a class="tag-pill" href="{{ tag.permalink }}" data-count="{{ tag.pages | length }}">
+    #{{ tag.name }}<span class="tag-count">{{ tag.pages | length }}</span>
+  </a>
+  {% endfor %}
+</div>
+
+<script>
+  const cloud = document.getElementById('tag-cloud');
+  [...cloud.children]
+    .sort((a, b) => +b.dataset.count - +a.dataset.count)
+    .forEach(el => cloud.appendChild(el));
+</script>
+{% endblock content %}
