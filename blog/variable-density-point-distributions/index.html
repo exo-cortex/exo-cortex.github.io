@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Variable Density Point Distributions &mdash; exo-cortex</title>
+  <link rel="stylesheet" href="https://exo-cortex.github.io/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  
+</head>
+<body>
+<div class="content">
+
+  <header>
+    <a class="site-title" href="https:&#x2F;&#x2F;exo-cortex.github.io">exo-cortex</a>
+    <nav>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io">home</a>
+      <a href="https://exo-cortex.github.io/blog/" class="active">blog</a>
+      <a href="https://exo-cortex.github.io/know_how/">know-how</a>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io/tags">tags</a>
+      <a href="https://exo-cortex.github.io/about/">about</a>
+    </nav>
+  </header>
+
+  <main>
+    
+<article>
+  <div class="post-header">
+    <h1>Variable Density Point Distributions</h1>
+    <div class="post-meta">
+      <time datetime="2021-06-28">2021-06-28</time>
+      
+    </div>
+  </div>
+
+  <p><img src="/img/points_wave.svg" alt="a distribution of dots" /></p>
+<p>I <em>finally</em> implemented my own version of the poisson disk sampling algorithm<sup class="footnote-reference"><a href="#1">1</a></sup>. The standard algorithm places points on a finite 2D plane with a minimum distance $d_{min}$ between them until there is no more space for additional points. The distribution of the distances of adjacent points is a poisson distribution - hence the name. Robert Bridson described an efficient algorithm to create these samplings<sup class="footnote-reference"><a href="#2">2</a></sup>. It uses a grid to store the points in them. This way every new candidate point need only check adjacent grid cells for existing points that might be closer than $d_{min}$ - no need to check every single prior point. If no existing points are too close the candidate becomes a new sample point.</p>
+<p>In my case I wanted to make the minimum distance adjustable, thereby varying the point density (see image above). The original method of saving points in a background grid does not work, as the grid has to be finer in some and coarser in other areas. A quadtree<sup class="footnote-reference"><a href="#3">3</a></sup> is ideal for this. I tried to implement my own quadtree in C++, but got impatient unfortunately. Instead I opted to implement it in python first and maybe later recreate a faster version in C++ or Rust. I found a nice quadtree implementation in python <sup class="footnote-reference"><a href="#4">4</a></sup> and added a method that checks if there is <em>any</em> point in the quadtree that is closer than $d_{min}$ to an input point.</p>
+<p>The algorithm is sketched beneath:</p>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF8F40;">import</span><span> random</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">from</span><span> quadtree</span><span style="color: #FF8F40;"> import</span><span> Rect</span><span style="color: #BFBDB6B3;">,</span><span> Quadtree</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>domain</span><span style="color: #F29668;"> =</span><span style="color: #FFB454;"> Rect</span><span>(</span><span style="color: #D2A6FF;">0</span><span style="color: #BFBDB6B3;">,</span><span style="color: #D2A6FF;"> 0</span><span style="color: #BFBDB6B3;">,</span><span> width</span><span style="color: #BFBDB6B3;">,</span><span> height)</span></span>
+<span class="giallo-l"><span>number_of_candidates</span><span style="color: #F29668;"> =</span><span style="color: #D2A6FF;"> 25</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>qt</span><span style="color: #F29668;"> =</span><span style="color: #FFB454;"> QuadTree</span><span>(domain)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>first_point</span><span style="color: #F29668;"> =</span><span> (width</span><span style="color: #F29668;"> /</span><span style="color: #D2A6FF;"> 2</span><span style="color: #BFBDB6B3;">,</span><span> height</span><span style="color: #F29668;"> /</span><span style="color: #D2A6FF;"> 2</span><span>)</span></span>
+<span class="giallo-l"><span>points_list</span><span style="color: #F29668;"> =</span><span> [first_point]</span></span>
+<span class="giallo-l"><span>qt</span><span style="color: #BFBDB6B3;">.</span><span style="color: #FFB454;">insert</span><span>(first_point)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>active_points</span><span style="color: #F29668;"> =</span><span> [</span><span style="color: #D2A6FF;">0</span><span>]</span><span style="color: #5A6673;font-style: italic;"> #stores indices of points in points_list that can be used to spawn new points near to them</span></span>
+<span class="giallo-l"><span>point_counter</span><span style="color: #F29668;"> =</span><span style="color: #D2A6FF;"> 1</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF8F40;">while</span><span> (</span><span style="color: #F07178;">len</span><span>(active_points)</span><span style="color: #F29668;"> &gt;</span><span style="color: #D2A6FF;"> 0</span><span>)</span><span style="color: #BFBDB6B3;">:</span></span>
+<span class="giallo-l"><span>    point_counter</span><span style="color: #F29668;"> +=</span><span style="color: #D2A6FF;"> 1</span></span>
+<span class="giallo-l"><span>    current_index</span><span style="color: #F29668;"> =</span><span> random</span><span style="color: #BFBDB6B3;">.</span><span style="color: #FFB454;">choice</span><span>(active_points)</span></span>
+<span class="giallo-l"><span>    current_x</span><span style="color: #BFBDB6B3;">,</span><span> current_y</span><span style="color: #F29668;"> =</span><span> points_list[current_index]</span></span>
+<span class="giallo-l"><span>    minimum_radius</span><span style="color: #F29668;"> =</span><span style="color: #FFB454;"> some_function</span><span>(current_x</span><span style="color: #BFBDB6B3;">,</span><span> current_y)</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">    for</span><span> i</span><span style="color: #FF8F40;"> in</span><span style="color: #F07178;"> range</span><span>(number_of_candidates)</span><span style="color: #BFBDB6B3;">:</span></span>
+<span class="giallo-l"><span>        candidate_point</span><span style="color: #F29668;"> =</span><span style="color: #FFB454;"> make_candidate</span><span>(points_list[current_active]</span><span style="color: #BFBDB6B3;">.</span><span>x</span><span style="color: #BFBDB6B3;">,</span><span> points_list[current_active]</span><span style="color: #BFBDB6B3;">.</span><span>y</span><span style="color: #BFBDB6B3;"> ,</span><span> minimum_radius)</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">        if</span><span style="color: #F29668;"> not</span><span> qt</span><span style="color: #BFBDB6B3;">.</span><span style="color: #FFB454;">is_too_close</span><span>(candidate_point)</span><span style="color: #F29668;"> and</span><span> domain</span><span style="color: #BFBDB6B3;">.</span><span style="color: #FFB454;">contains</span><span>(candidate_point)</span><span style="color: #BFBDB6B3;">:</span></span>
+<span class="giallo-l"><span>            qt</span><span style="color: #BFBDB6B3;">.</span><span style="color: #FFB454;">insert</span><span>(candidate_point)</span></span>
+<span class="giallo-l"><span>            points_list</span><span style="color: #BFBDB6B3;">.</span><span style="color: #FFB454;">append</span><span>(candidate_point)</span></span>
+<span class="giallo-l"><span>            active_points</span><span style="color: #BFBDB6B3;">.</span><span style="color: #FFB454;">append</span><span>(point_counter)</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">            break</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">    else</span><span style="color: #BFBDB6B3;">:</span></span>
+<span class="giallo-l"><span>        active</span><span style="color: #BFBDB6B3;">.</span><span>remove[current_index]</span></span>
+<span class="giallo-l"></span></code></pre>
+<p>The deviation from the standard algorithm is that $d_min$ depends on the $x$ and $y$ coordinate of the active point. The point distribution uses the following function:</p>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="python"><span class="giallo-l"><span>base_radius</span><span style="color: #F29668;"> =</span><span style="color: #D2A6FF;"> 10</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF8F40;">def</span><span style="color: #FFB454;"> some_function</span><span>(</span><span style="color: #D2A6FF;">x</span><span style="color: #BFBDB6B3;"> ,</span><span style="color: #D2A6FF;"> y</span><span>):</span></span>
+<span class="giallo-l"><span>	r</span><span style="color: #F29668;"> =</span><span> math</span><span style="color: #BFBDB6B3;">.</span><span style="color: #FFB454;">sqrt</span><span>((x</span><span style="color: #F29668;"> -</span><span style="color: #D2A6FF;"> 1.5</span><span style="color: #F29668;"> *</span><span> width</span><span style="color: #F29668;">/</span><span style="color: #D2A6FF;">2</span><span>)</span><span style="color: #F29668;"> **</span><span style="color: #D2A6FF;"> 2</span><span>)</span><span style="color: #F29668;"> +</span><span> ((_y</span><span style="color: #F29668;"> -</span><span> height</span><span style="color: #F29668;">/</span><span style="color: #D2A6FF;">2</span><span>)</span><span style="color: #F29668;"> **</span><span style="color: #D2A6FF;"> 2</span><span>))</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">	return</span><span> base_radius</span><span style="color: #F29668;"> *</span><span> (</span><span style="color: #D2A6FF;">1.25</span><span style="color: #F29668;"> +</span><span> math</span><span style="color: #BFBDB6B3;">.</span><span style="color: #FFB454;">cos</span><span>( r</span><span style="color: #F29668;"> *</span><span style="color: #D2A6FF;"> 0.075</span><span>))</span></span>
+<span class="giallo-l"><span style="color: #5A6673;font-style: italic;">    # varies between 0.25 and 2.25 times base_radius</span></span></code></pre>
+<p>The function to create new candidate points is simply creating a random point within the annulus region around the current active point:</p>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF8F40;">def</span><span style="color: #FFB454;"> make_candidate</span><span>(</span><span style="color: #D2A6FF;">anchor_x</span><span style="color: #BFBDB6B3;">,</span><span style="color: #D2A6FF;"> anchor_y</span><span style="color: #BFBDB6B3;">,</span><span style="color: #D2A6FF;"> minimum_radius</span><span>):</span></span>
+<span class="giallo-l"><span>    angle</span><span style="color: #F29668;"> =</span><span> random</span><span style="color: #BFBDB6B3;">.</span><span style="color: #FFB454;">uniform</span><span>(</span><span style="color: #D2A6FF;">0</span><span style="color: #BFBDB6B3;">,</span><span style="color: #D2A6FF;"> 2.0</span><span style="color: #F29668;"> *</span><span> math</span><span style="color: #BFBDB6B3;">.</span><span>pi)</span></span>
+<span class="giallo-l"><span>    distance</span><span style="color: #F29668;"> =</span><span> random</span><span style="color: #BFBDB6B3;">.</span><span style="color: #FFB454;">uniform</span><span>(</span><span style="color: #D2A6FF;">1.0</span><span style="color: #BFBDB6B3;">,</span><span style="color: #D2A6FF;"> 2.0</span><span>)</span><span style="color: #F29668;"> *</span><span> minimum_radius</span></span>
+<span class="giallo-l"><span>    x_coordinate</span><span style="color: #F29668;"> =</span><span> anchor_x</span><span style="color: #F29668;"> +</span><span> distance</span><span style="color: #F29668;"> *</span><span> math</span><span style="color: #BFBDB6B3;">.</span><span style="color: #FFB454;">cos</span><span>(angle)</span></span>
+<span class="giallo-l"><span>    y_coordinate</span><span style="color: #F29668;"> =</span><span> anchor_y</span><span style="color: #F29668;"> +</span><span> distance</span><span style="color: #F29668;"> *</span><span> math</span><span style="color: #BFBDB6B3;">.</span><span style="color: #FFB454;">sin</span><span>(angle) </span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">    return</span><span> (x_coordinate</span><span style="color: #BFBDB6B3;">,</span><span> y_coordinate)</span></span></code></pre>
+<p>I find these images highly interesting. They consist of only individual elements, yet collectively they can mimic continuous gradients from bright and dark areas.</p>
+<hr />
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p><a rel="external" href="https://en.wikipedia.org/wiki/Supersampling#Poisson_disk">Poisson disk sampling</a></p>
+</div>
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p><a rel="external" href="https://www.cct.lsu.edu/~fharhad/ganbatte/siggraph2007/CD2/content/sketches/0250.pdf">Fast Poisson Disk Sampling in Arbitrary Dimensions</a></p>
+</div>
+<div class="footnote-definition" id="3"><sup class="footnote-definition-label">3</sup>
+<p><a rel="external" href="https://en.wikipedia.org/wiki/Quadtree">quadtree</a></p>
+</div>
+<div class="footnote-definition" id="4"><sup class="footnote-definition-label">4</sup>
+<p><a rel="external" href="https://scipython.com/blog/quadtrees-2-implementation-in-python/">quadtree in Python</a></p>
+</div>
+<p>more images:
+<img src="/img/points_wave_diagonal.svg" alt="a distribution of dots" /></p>
+
+
+  
+  <div class="tag-cloud">
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/math/">#math</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/art/">#art</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/dots/">#dots</a>
+    
+  </div>
+  
+</article>
+
+  </main>
+
+  <footer>
+    <p>exo-cortex &mdash; exo-cortex</p>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('video.videoloop').forEach(v => {
+    v.addEventListener('mouseenter', () => v.play());
+    v.addEventListener('mouseleave', () => {
+      v.pause();
+      if (v.hasAttribute('data-reset')) v.currentTime = 0;
+    });
+  });
+</script>
+</body>
+</html>

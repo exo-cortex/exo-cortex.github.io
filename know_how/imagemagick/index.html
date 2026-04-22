@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>easy image manipulation using imagemagick &mdash; exo-cortex</title>
+  <link rel="stylesheet" href="https://exo-cortex.github.io/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+<div class="content">
+
+  <header>
+    <a class="site-title" href="https:&#x2F;&#x2F;exo-cortex.github.io">exo-cortex</a>
+    <nav>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io">home</a>
+      <a href="https://exo-cortex.github.io/blog/">blog</a>
+      <a href="https://exo-cortex.github.io/know_how/" class="active">know-how</a>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io/tags">tags</a>
+      <a href="https://exo-cortex.github.io/about/">about</a>
+    </nav>
+  </header>
+
+  <main>
+    
+<article>
+  <div class="post-header">
+    <h1>easy image manipulation using imagemagick</h1>
+    <div class="post-meta">
+      <time datetime="2021-06-02">2021-06-02</time>
+      
+    </div>
+  </div>
+
+  <p>I often use <a rel="external" href="https://en.wikipedia.org/wiki/ImageMagick"><strong>Imagemagick</strong></a> for simple image-manipulation from the commandline. To use the program run the command "convert".</p>
+<p>The following is a collection of useful commands for simple image manipulation like resizing, cropping or conversion from one format to another. This collection exists, because I realized that I had to re-google some commands everytime I was using them.</p>
+<h2 id="conversion-between-formats">conversion between formats</h2>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> convert input_image.png</span><span style="color: #95E6CB;"> -quality</span><span style="color: #D2A6FF;"> 90</span><span style="color: #AAD94C;"> output_image.jpg</span></span>
+<span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># or set output format through &quot;-format&quot;-option</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> convert input_image.png</span><span style="color: #95E6CB;"> -quality</span><span style="color: #D2A6FF;"> 90</span><span style="color: #95E6CB;"> -format</span><span style="color: #AAD94C;"> jpg output_image</span></span></code></pre><h2 id="resize-an-image">resize an image</h2>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># resize with relative size argument.</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> convert input_image.png</span><span style="color: #95E6CB;"> -resize</span><span style="color: #AAD94C;"> 50% smaller_output_image.png</span></span>
+<span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># resize with absolute size argument.</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> convert input_image.png</span><span style="color: #95E6CB;"> -resize</span><span style="color: #D2A6FF;"> 300</span><span style="color: #AAD94C;"> output_image.png</span></span>
+<span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># resize with absolute size argument, disregard aspect ration.</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> convert input_image.png</span><span style="color: #95E6CB;"> -resize</span><span style="color: #AAD94C;"> 300x500 stretched_output_image.png</span></span></code></pre><h2 id="cropping-images">cropping images</h2>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># cropping an image to 100x50 with an offset 25 pixels from the left and 10 pixels from the top</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> convert</span><span style="color: #95E6CB;"> -crop</span><span style="color: #AAD94C;"> 100x50+25+10 input_image.png output_image.png</span></span></code></pre><h2 id="reduzing-the-number-of-colors">reduzing the number of colors</h2>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># reducing the number of colors to 10</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> convert</span><span style="color: #95E6CB;"> -colors</span><span style="color: #D2A6FF;"> 10</span><span style="color: #AAD94C;"> input_image.png output_image.png</span></span></code></pre>
+
+  
+</article>
+
+  </main>
+
+  <footer>
+    <p>exo-cortex &mdash; exo-cortex</p>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('video.videoloop').forEach(v => {
+    v.addEventListener('mouseenter', () => v.play());
+    v.addEventListener('mouseleave', () => {
+      v.pause();
+      if (v.hasAttribute('data-reset')) v.currentTime = 0;
+    });
+  });
+</script>
+</body>
+</html>

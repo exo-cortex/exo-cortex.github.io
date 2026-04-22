@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ffmpeg_scripts &mdash; exo-cortex</title>
+  <link rel="stylesheet" href="https://exo-cortex.github.io/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+<div class="content">
+
+  <header>
+    <a class="site-title" href="https:&#x2F;&#x2F;exo-cortex.github.io">exo-cortex</a>
+    <nav>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io">home</a>
+      <a href="https://exo-cortex.github.io/blog/">blog</a>
+      <a href="https://exo-cortex.github.io/know_how/" class="active">know-how</a>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io/tags">tags</a>
+      <a href="https://exo-cortex.github.io/about/">about</a>
+    </nav>
+  </header>
+
+  <main>
+    
+<article>
+  <div class="post-header">
+    <h1>ffmpeg_scripts</h1>
+    <div class="post-meta">
+      <time datetime="2021-05-30">2021-05-30</time>
+      
+    </div>
+  </div>
+
+  <p>using ffmpeg.
+I use ffmpeg to convert videos from one format to the other. In order to create small video files from gifs I use this script:</p>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #5A6673;font-style: italic;">#!/usr/bin/sh</span></span>
+<span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># two-pass video-conversion with resizing to width </span></span>
+<span class="giallo-l"><span style="color: #F07178;">echo</span><span style="color: #AAD94C;"> &quot;</span><span style="color: #D2A6FF;">$1</span><span style="color: #AAD94C;"> &gt;&gt; </span><span style="color: #D2A6FF;">$2</span><span style="color: #AAD94C;"> resizing to width=</span><span style="color: #D2A6FF;">$3</span><span style="color: #AAD94C;"> with target video-bitrate of </span><span style="color: #D2A6FF;">$4</span><span style="color: #AAD94C;">&quot;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #59C2FF;">ffmpeg</span><span style="color: #95E6CB;"> -y -i</span><span style="color: #AAD94C;"> &quot;</span><span style="color: #D2A6FF;">$1</span><span style="color: #AAD94C;">&quot;</span><span style="color: #95E6CB;"> -vf</span><span style="color: #AAD94C;"> scale=</span><span style="color: #D2A6FF;">$3</span><span style="color: #AAD94C;">:-1</span><span style="color: #95E6CB;"> -c:v</span><span style="color: #AAD94C;"> vp9</span><span style="color: #95E6CB;"> -preset</span><span style="color: #AAD94C;"> quality</span><span style="color: #95E6CB;"> -b:v</span><span style="color: #D2A6FF;"> $4</span><span style="color: #95E6CB;"> -pass</span><span style="color: #D2A6FF;"> 1</span><span style="color: #95E6CB;"> -an -auto-alt-ref</span><span style="color: #D2A6FF;"> 0</span><span style="color: #95E6CB;"> -f</span><span style="color: #AAD94C;"> webm /dev/null</span><span style="color: #BFBDB6B3;"> &amp;&amp;</span><span style="color: #95E6CB;"> \</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">ffmpeg</span><span style="color: #95E6CB;"> -i</span><span style="color: #AAD94C;"> &quot;</span><span style="color: #D2A6FF;">$1</span><span style="color: #AAD94C;">&quot;</span><span style="color: #95E6CB;"> -vf</span><span style="color: #AAD94C;"> scale=</span><span style="color: #D2A6FF;">$3</span><span style="color: #AAD94C;">:-1</span><span style="color: #95E6CB;"> -c:v</span><span style="color: #AAD94C;"> vp9</span><span style="color: #95E6CB;"> -preset</span><span style="color: #AAD94C;"> quality</span><span style="color: #95E6CB;"> -b:v</span><span style="color: #D2A6FF;"> $4</span><span style="color: #95E6CB;"> -pass</span><span style="color: #D2A6FF;"> 2</span><span style="color: #95E6CB;"> -an -auto-alt-ref</span><span style="color: #D2A6FF;"> 0 $2</span></span></code></pre><h2 id="explanation">explanation</h2>
+<ul>
+<li>-an (no audio)</li>
+<li>-vf (video filtering -&gt; see below)</li>
+<li>-c:v (video codec options - e.g. <strong>vp9</strong> or <strong>libx264</strong> )</li>
+<li>-c:a (audio codec - e.g. <strong>vorbis</strong>)</li>
+<li>-preset ([ultrafast, superfast, veryfast, faster, fast, medium (default), slow, slower, veryslow])</li>
+<li>-b:v 1M (video bitrate )</li>
+<li>-b:a (audio bitrate)</li>
+</ul>
+<h2 id="some-video-filter-options">[*] some video filter options</h2>
+<ul>
+<li>scale=400:-1 (resize to width=400, keep aspect ratio)</li>
+<li>scale=iw/2:-1 (resize image to 50% of input_width resolution, might stretch/squash the image)</li>
+<li>scale=400:300 (resize image to 400x300 resolution, might stretch/squash the image)</li>
+<li>negate (invert colors)</li>
+</ul>
+<h2 id="other-useful-command">other useful command:</h2>
+<ul>
+<li>-codecs (print out a list of all codecs available on this computer)</li>
+</ul>
+<hr />
+<p>links:</p>
+<ul>
+<li><a rel="external" href="https://ffmpeg.org/documentation.html">ffmpeg documentation</a></li>
+<li><a rel="external" href="https://trac.ffmpeg.org/wiki/Encode/VP9">vp9 guide</a></li>
+<li><a rel="external" href="https://trac.ffmpeg.org/wiki/Encode/H.264">h264 guide</a></li>
+<li><a rel="external" href="https://trac.ffmpeg.org/wiki/Encode/AV1">av1guide</a></li>
+<li><a rel="external" href="https://trac.ffmpeg.org/wiki/FilteringGuide">filtering guide</a></li>
+<li><a rel="external" href="https://write.corbpie.com/ffmpeg-list-all-codecs-encoders-decoders-and-formats/">list avaliable codecs</a></li>
+</ul>
+
+
+  
+  <div class="tag-cloud">
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/bash/">#bash</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/commandline/">#commandline</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/ffmpeg/">#ffmpeg</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/how-to/">#how-to</a>
+    
+  </div>
+  
+</article>
+
+  </main>
+
+  <footer>
+    <p>exo-cortex &mdash; exo-cortex</p>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('video.videoloop').forEach(v => {
+    v.addEventListener('mouseenter', () => v.play());
+    v.addEventListener('mouseleave', () => {
+      v.pause();
+      if (v.hasAttribute('data-reset')) v.currentTime = 0;
+    });
+  });
+</script>
+</body>
+</html>

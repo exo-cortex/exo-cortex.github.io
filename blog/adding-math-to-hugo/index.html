@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adding math to Hugo &mdash; exo-cortex</title>
+  <link rel="stylesheet" href="https://exo-cortex.github.io/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  
+</head>
+<body>
+<div class="content">
+
+  <header>
+    <a class="site-title" href="https:&#x2F;&#x2F;exo-cortex.github.io">exo-cortex</a>
+    <nav>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io">home</a>
+      <a href="https://exo-cortex.github.io/blog/" class="active">blog</a>
+      <a href="https://exo-cortex.github.io/know_how/">know-how</a>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io/tags">tags</a>
+      <a href="https://exo-cortex.github.io/about/">about</a>
+    </nav>
+  </header>
+
+  <main>
+    
+<article>
+  <div class="post-header">
+    <h1>Adding math to Hugo</h1>
+    <div class="post-meta">
+      <time datetime="2021-05-26">2021-05-26</time>
+      
+      <span class="updated">(updated <time datetime="2021-05-26">2021-05-26</time>)</span>
+      
+    </div>
+  </div>
+
+  <p><em>edit</em>: this blog moved to <em>Zola</em>. So the headline is wrong.</p>
+<p>with the help of this nice <a rel="external" href="https://mertbakir.gitlab.io/hugo/math-typesetting-in-hugo/"><strong>explanation</strong></a> I was able to add math-typesetting to my blog. The framework is <strong>KaTeX</strong> and it supports a <a rel="external" href="https://katex.org/docs/supported.html#sqrt">variety</a> of <strong>LaTeX</strong> math typesetting.</p>
+<p>This enables me to write fomulas like these:</p>
+<p>$$
+z_{i}(t) = (\lambda + i\omega + \gamma |z_{i}(t)|^{2})z_{i}(t) + \sum_{j=0}^{N} \kappa_{i\leftarrow j} e^{i \phi_{i \leftarrow j}}z_{j}(t - \tau_{i\leftarrow j})
+$$</p>
+<p>It also allows to write math symbols like $\infty$ within text. This is pretty cool for things like $\tfrac{1}{3}$.</p>
+
+
+  
+  <div class="tag-cloud">
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/hugo/">#hugo</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/math/">#math</a>
+    
+  </div>
+  
+</article>
+
+  </main>
+
+  <footer>
+    <p>exo-cortex &mdash; exo-cortex</p>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('video.videoloop').forEach(v => {
+    v.addEventListener('mouseenter', () => v.play());
+    v.addEventListener('mouseleave', () => {
+      v.pause();
+      if (v.hasAttribute('data-reset')) v.currentTime = 0;
+    });
+  });
+</script>
+</body>
+</html>

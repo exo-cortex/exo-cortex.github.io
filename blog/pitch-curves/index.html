@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pitch Curves &mdash; exo-cortex</title>
+  <link rel="stylesheet" href="https://exo-cortex.github.io/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  
+</head>
+<body>
+<div class="content">
+
+  <header>
+    <a class="site-title" href="https:&#x2F;&#x2F;exo-cortex.github.io">exo-cortex</a>
+    <nav>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io">home</a>
+      <a href="https://exo-cortex.github.io/blog/" class="active">blog</a>
+      <a href="https://exo-cortex.github.io/know_how/">know-how</a>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io/tags">tags</a>
+      <a href="https://exo-cortex.github.io/about/">about</a>
+    </nav>
+  </header>
+
+  <main>
+    
+<article>
+  <div class="post-header">
+    <h1>Pitch Curves</h1>
+    <div class="post-meta">
+      <time datetime="2021-05-26">2021-05-26</time>
+      
+    </div>
+  </div>
+
+  <p><strong>idea</strong>: creating sound from <em>pure functions</em>.<br />
+The most elemental wave-forms are sine functions.</p>
+<p><div class="media-block" >
+  <img src="&#x2F;img&#x2F;example_sound_frequency.svg" alt="the pitch of a tone defined over time.">
+  
+  <p class="media-caption">the pitch of a tone defined over time.</p>
+  
+</div>
+
+
+
+  
+
+
+
+
+<div class="media-block audio-block">
+  <p class="media-caption">the curve turned into the pitch of a sound.</p>
+  <audio controls preload="metadata">
+    <source src="&#x2F;sound&#x2F;example_sound.ogg" type="audio&#x2F;ogg; codecs=vorbis">
+    
+  </audio>
+</div>
+</p>
+<p>Every sound in nature can be deconstructed into a collection of sine functions. A single sine function can only be deconstructed into itself and is therefor called "pure".</p>
+<p>Some years ago I had the idea of constructing "sound emoji" - abstract representations of emotions through sound. The idea was to create short sound of ~1s that can deliver an emotion with the most basic means. In my case a sine wave that changes its frequency.</p>
+
+
+  
+  <div class="tag-cloud">
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/audio/">#audio</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/curves/">#curves</a>
+    
+  </div>
+  
+</article>
+
+  </main>
+
+  <footer>
+    <p>exo-cortex &mdash; exo-cortex</p>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('video.videoloop').forEach(v => {
+    v.addEventListener('mouseenter', () => v.play());
+    v.addEventListener('mouseleave', () => {
+      v.pause();
+      if (v.hasAttribute('data-reset')) v.currentTime = 0;
+    });
+  });
+</script>
+</body>
+</html>

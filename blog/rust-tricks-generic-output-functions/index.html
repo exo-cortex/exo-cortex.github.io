@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rust Tricks Generic Output Functions &mdash; exo-cortex</title>
+  <link rel="stylesheet" href="https://exo-cortex.github.io/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+<div class="content">
+
+  <header>
+    <a class="site-title" href="https:&#x2F;&#x2F;exo-cortex.github.io">exo-cortex</a>
+    <nav>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io">home</a>
+      <a href="https://exo-cortex.github.io/blog/" class="active">blog</a>
+      <a href="https://exo-cortex.github.io/know_how/">know-how</a>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io/tags">tags</a>
+      <a href="https://exo-cortex.github.io/about/">about</a>
+    </nav>
+  </header>
+
+  <main>
+    
+<article>
+  <div class="post-header">
+    <h1>Rust Tricks Generic Output Functions</h1>
+    <div class="post-meta">
+      <time datetime="2023-10-30">2023-10-30</time>
+      
+    </div>
+  </div>
+
+  <p>I'm re-writing my <a rel="external" href="https://github.com/exo-cortex/dynamical_system_in_rust">network-delay-differential-equations-solver</a> from my master thesis --- this time in Rust (of course!). The idea is to learn more about the language. That's why I try to tackle problems by using clever new approaches that Rust enables me to do.
+Along the way I there've been a few tricks that I learned or that nice people taught me which made it or will make it into the program. This one came from a someone <a rel="external" href="https://github.com/eqv">(eqv)</a> who's much more experienced in such things:</p>
+<h1 id="neat-trick-1">Neat trick #1</h1>
+<p>So --- I have a struct that is holding some data. As the structs data changes over time I want to keep either (<strong>a</strong>) <em><strong>all</strong></em>, (<strong>b</strong>) <em><strong>some</strong></em> of its data, (<strong>c</strong>) new data <em><strong>derived</strong></em> from the struct's data or (<strong>d</strong>) a <em><strong>combination</strong></em> of (<strong>a-c</strong>). So I have my struct <code>Data</code> and I need a way to have multiple <code>get_data()</code>-functions that return it in various ways (<strong>a</strong> - <strong>c</strong>):</p>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="rust"><span class="giallo-l"><span style="color: #5A6673;font-style: italic;">// all the structs fields and output types are `f32` which is a random choice.</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">struct</span><span style="color: #59C2FF;"> Data</span><span> {</span></span>
+<span class="giallo-l"><span>    x</span><span style="color: #F29668;">:</span><span style="color: #59C2FF;"> f32</span><span>,</span></span>
+<span class="giallo-l"><span>    y</span><span style="color: #F29668;">:</span><span style="color: #59C2FF;"> f32</span><span>,</span></span>
+<span class="giallo-l"><span>    z</span><span style="color: #F29668;">:</span><span style="color: #59C2FF;"> f32</span><span>,</span></span>
+<span class="giallo-l"><span>}</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF8F40;">fn</span><span style="color: #FFB454;"> get_data_a</span><span>(d</span><span style="color: #F29668;">: &amp;</span><span style="color: #59C2FF;">Data</span><span>)</span><span style="color: #F29668;"> -&gt;</span><span> [</span><span style="color: #59C2FF;">f32</span><span>;</span><span style="color: #D2A6FF;"> 3</span><span>] {</span></span>
+<span class="giallo-l"><span>    [d</span><span style="color: #F29668;">.</span><span>x, d</span><span style="color: #F29668;">.</span><span>y, d</span><span style="color: #F29668;">.</span><span>z]</span><span style="color: #5A6673;font-style: italic;"> // (a) all of `Data`</span></span>
+<span class="giallo-l"><span>}</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">fn</span><span style="color: #FFB454;"> get_data_b_z</span><span>(d</span><span style="color: #F29668;">: &amp;</span><span style="color: #59C2FF;">Data</span><span>)</span><span style="color: #F29668;"> -&gt;</span><span> [</span><span style="color: #59C2FF;">f32</span><span>;</span><span style="color: #D2A6FF;"> 1</span><span>] {</span></span>
+<span class="giallo-l"><span>    [d</span><span style="color: #F29668;">.</span><span>z]</span><span style="color: #5A6673;font-style: italic;"> // (b) some of `Data` - in this case only `z` </span></span>
+<span class="giallo-l"><span>}</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">fn</span><span style="color: #FFB454;"> get_data_c_1</span><span>(d</span><span style="color: #F29668;">: &amp;</span><span style="color: #59C2FF;">Data</span><span>)</span><span style="color: #F29668;"> -&gt;</span><span> [</span><span style="color: #59C2FF;">f32</span><span>;</span><span style="color: #D2A6FF;"> 1</span><span>] {</span></span>
+<span class="giallo-l"><span>    [d</span><span style="color: #F29668;">.</span><span>x</span><span style="color: #F29668;">.</span><span style="color: #FFB454;">sqrt</span><span>()]</span><span style="color: #5A6673;font-style: italic;"> // (c) values derived through transforming `x`` </span></span>
+<span class="giallo-l"><span>}</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">fn</span><span style="color: #FFB454;"> get_data_d_1</span><span>(d</span><span style="color: #F29668;">: &amp;</span><span style="color: #59C2FF;">Data</span><span>)</span><span style="color: #F29668;"> -&gt;</span><span> [</span><span style="color: #59C2FF;">f32</span><span>;</span><span style="color: #D2A6FF;"> 4</span><span>] {</span></span>
+<span class="giallo-l"><span>    [d</span><span style="color: #F29668;">.</span><span>x, d</span><span style="color: #F29668;">.</span><span>x </span><span style="color: #F29668;">*</span><span> d</span><span style="color: #F29668;">.</span><span>y, d</span><span style="color: #F29668;">.</span><span>y </span><span style="color: #F29668;">-</span><span> d</span><span style="color: #F29668;">.</span><span>z, d</span><span style="color: #F29668;">.</span><span>z</span><span style="color: #F29668;">.</span><span style="color: #FFB454;">sqrt</span><span>()]</span><span style="color: #5A6673;font-style: italic;"> // (d) some combination of the above</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
+<p>If needed I can define a large number of these <code>get_data_*()</code>-functions - I just need to pic a name and then I can call them from somewhere else.</p>
+<p>But now I need to have multiple such <code>Data</code>-types that each have their own little zoo of <code>get_data_*()</code>-functions. Each is defined as a separate module:</p>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="rust"><span class="giallo-l"><span style="color: #FF8F40;">mod</span><span style="color: #59C2FF;"> CoolData</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">    struct</span><span style="color: #59C2FF;"> Data</span><span> {</span><span style="color: #5A6673;font-style: italic;"> /* data */</span><span> }</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">    fn</span><span style="color: #FFB454;"> get_data_1</span><span>(d</span><span style="color: #F29668;">: &amp;</span><span style="color: #59C2FF;">Data</span><span>)</span><span style="color: #F29668;"> -&gt;</span><span> [</span><span style="color: #59C2FF;">f32</span><span>; n_1]</span></span>
+<span class="giallo-l"><span style="color: #5A6673;font-style: italic;">    // ...</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">    fn</span><span style="color: #FFB454;"> get_data_N</span><span>(d</span><span style="color: #F29668;">: &amp;</span><span style="color: #59C2FF;">Data</span><span>)</span><span style="color: #F29668;"> -&gt;</span><span> [</span><span style="color: #59C2FF;">f32</span><span>; n_N]</span></span>
+<span class="giallo-l"><span>}</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF8F40;">mod</span><span style="color: #59C2FF;"> HappyData</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">    struct</span><span style="color: #59C2FF;"> Data</span><span> {</span><span style="color: #5A6673;font-style: italic;"> /* data */</span><span> }</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">    fn</span><span style="color: #FFB454;"> get_data_1</span><span>(d</span><span style="color: #F29668;">: &amp;</span><span style="color: #59C2FF;">Data</span><span>)</span><span style="color: #F29668;"> -&gt;</span><span> [</span><span style="color: #59C2FF;">f32</span><span>; m_1]</span></span>
+<span class="giallo-l"><span style="color: #5A6673;font-style: italic;">    // ...</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">    fn</span><span style="color: #FFB454;"> get_data_M</span><span>(d</span><span style="color: #F29668;">: &amp;</span><span style="color: #59C2FF;">Data</span><span>)</span><span style="color: #F29668;"> -&gt;</span><span> [</span><span style="color: #59C2FF;">f32</span><span>; m_M]</span></span>
+<span class="giallo-l"><span>}</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #5A6673;font-style: italic;">// ... and so son</span></span></code></pre>
+<p>Somewhere else I want to write functions generically for all of my <code>Data</code>-types and use their <code>get_data_*()</code>-functions. The way to do it is to define a trait e.g. <code>DataHolder</code> that each <code>Data</code> has to implement in order to use these functions. Easy, that's how Rust's traits work.</p>
+<p>But how can I use the <code>get_data_*()</code>-functions if each of these modules has a different number of <code>get_data_*()</code> and each have a different return-type? If I have all the <code>get_data_*()</code>'s in the trait <code>DataHolder</code> across all modules we have to have the same number of these functions and each of them has to have the same return type. That's very impractical.</p>
+<p>The solution is to define a different helper-type <code>As*</code> that only holds a reference to <code>Data</code> for each <code>get_data_*()</code> and a (const-)generic trait <code>get_data&lt;const N: usize&gt;</code> that each helper-type has to implement.</p>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="rust"><span class="giallo-l"><span style="color: #FF8F40;">struct</span><span style="color: #59C2FF;"> Data</span><span> { x</span><span style="color: #F29668;">:</span><span style="color: #59C2FF;"> f32</span><span> }</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF8F40;">pub trait</span><span style="color: #59C2FF;"> GiveSomeData</span><span>&lt;</span><span style="color: #FF8F40;">const</span><span style="color: #95E6CB;"> N</span><span style="color: #F29668;">:</span><span style="color: #59C2FF;"> usize</span><span>&gt; {</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">    fn</span><span style="color: #FFB454;"> get_data</span><span>(</span><span style="color: #F29668;">&amp;</span><span style="color: #39BAE6;font-style: italic;">self</span><span>)</span><span style="color: #F29668;"> -&gt;</span><span> [</span><span style="color: #59C2FF;">f32</span><span>;</span><span style="color: #59C2FF;"> N</span><span>];</span></span>
+<span class="giallo-l"><span>}</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF8F40;">struct</span><span style="color: #59C2FF;"> AsA</span><span>&lt;&#39;</span><span style="color: #59C2FF;">a</span><span>&gt;(</span><span style="color: #F29668;">&amp;</span><span>&#39;</span><span style="color: #59C2FF;">a Data</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">impl</span><span>&lt;&#39;</span><span style="color: #59C2FF;">a</span><span>&gt;</span><span style="color: #59C2FF;"> GiveSomeData</span><span>&lt;1&gt;</span><span style="color: #FF8F40;"> for</span><span style="color: #59C2FF;"> AsA</span><span>&lt;&#39;</span><span style="color: #59C2FF;">a</span><span>&gt; {</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">    fn</span><span style="color: #FFB454;"> get_data</span><span>(</span><span style="color: #F29668;">&amp;</span><span style="color: #39BAE6;font-style: italic;">self</span><span>)</span><span style="color: #F29668;"> -&gt;</span><span> [</span><span style="color: #59C2FF;">f32</span><span>;</span><span style="color: #D2A6FF;"> 1</span><span>] {</span></span>
+<span class="giallo-l"><span>        [</span><span style="color: #39BAE6;font-style: italic;">self</span><span style="color: #F29668;">.</span><span style="color: #D2A6FF;">0</span><span style="color: #BFBDB6B3;">.</span><span>x]</span></span>
+<span class="giallo-l"><span>    }</span></span>
+<span class="giallo-l"><span>}</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF8F40;">struct</span><span style="color: #59C2FF;"> AsB</span><span>&lt;&#39;</span><span style="color: #59C2FF;">a</span><span>&gt;(</span><span style="color: #F29668;">&amp;</span><span>&#39;</span><span style="color: #59C2FF;">a Data</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">impl</span><span>&lt;&#39;</span><span style="color: #59C2FF;">a</span><span>&gt;</span><span style="color: #59C2FF;"> GiveSomeData</span><span>&lt;4&gt;</span><span style="color: #FF8F40;"> for</span><span style="color: #59C2FF;"> AsB</span><span>&lt;&#39;</span><span style="color: #59C2FF;">a</span><span>&gt; {</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">    fn</span><span style="color: #FFB454;"> get_data</span><span>(</span><span style="color: #F29668;">&amp;</span><span style="color: #39BAE6;font-style: italic;">self</span><span>)</span><span style="color: #F29668;"> -&gt;</span><span> [</span><span style="color: #59C2FF;">f32</span><span>;</span><span style="color: #D2A6FF;"> 4</span><span>] {</span></span>
+<span class="giallo-l"><span>        [</span><span style="color: #39BAE6;font-style: italic;">self</span><span style="color: #F29668;">.</span><span style="color: #D2A6FF;">0</span><span style="color: #BFBDB6B3;">.</span><span>x,</span><span style="color: #39BAE6;font-style: italic;"> self</span><span style="color: #F29668;">.</span><span style="color: #D2A6FF;">0</span><span style="color: #BFBDB6B3;">.</span><span>x</span><span style="color: #F29668;">.</span><span style="color: #FFB454;">sqrt</span><span>(),</span><span style="color: #39BAE6;font-style: italic;"> self</span><span style="color: #F29668;">.</span><span style="color: #D2A6FF;">0</span><span style="color: #BFBDB6B3;">.</span><span>x</span><span style="color: #F29668;">.</span><span style="color: #FFB454;">exp</span><span>(),</span><span style="color: #39BAE6;font-style: italic;"> self</span><span style="color: #F29668;">.</span><span style="color: #D2A6FF;">0</span><span style="color: #BFBDB6B3;">.</span><span>x</span><span style="color: #F29668;">.</span><span style="color: #FFB454;">sin</span><span>()]</span><span style="color: #5A6673;font-style: italic;"> // for example</span></span>
+<span class="giallo-l"><span>    }</span></span>
+<span class="giallo-l"><span>}</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #5A6673;font-style: italic;">// use these </span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">pub fn</span><span style="color: #FFB454;"> use_data</span><span>&lt;</span><span style="color: #FF8F40;">const</span><span style="color: #59C2FF;"> N</span><span style="color: #F29668;">:</span><span style="color: #59C2FF;"> usize</span><span>,</span><span style="color: #59C2FF;"> T</span><span style="color: #F29668;">:</span><span style="color: #59C2FF;"> GiveSomeData</span><span>&lt;</span><span style="color: #59C2FF;">T</span><span>&gt;&gt;(d</span><span style="color: #F29668;">: &amp;</span><span style="color: #59C2FF;">T</span><span>) {</span></span>
+<span class="giallo-l"><span style="color: #FFB454;">    println</span><span>(</span><span style="color: #AAD94C;">&quot;{:?}&quot;</span><span>, t</span><span style="color: #F29668;">.</span><span style="color: #FFB454;">get_data</span><span>());</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
+<p>voilà: Now each module can have their own set of various output formats and transformations that still adhere to a common interface.</p>
+<p>My version will likely also have a second method required by <code>GiveSomeData&lt;N&gt;</code> that returns a <code>&amp;'static [&amp;'static]</code> in which each <code>get_data_*()</code>'s output array's elements are described e.g. for <code>AsB</code> from above:</p>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="rust"><span class="giallo-l"><span style="color: #FF8F40;">impl</span><span>&lt;&#39;</span><span style="color: #59C2FF;">a</span><span>&gt;</span><span style="color: #59C2FF;"> GiveSomeData</span><span>&lt;4&gt;</span><span style="color: #FF8F40;"> for</span><span style="color: #59C2FF;"> AsB</span><span>&lt;&#39;</span><span style="color: #59C2FF;">a</span><span>&gt; {</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">    fn</span><span style="color: #FFB454;"> get_data</span><span>(</span><span style="color: #F29668;">&amp;</span><span style="color: #39BAE6;font-style: italic;">self</span><span>)</span><span style="color: #F29668;"> -&gt;</span><span> [</span><span style="color: #59C2FF;">f32</span><span>;</span><span style="color: #D2A6FF;"> 4</span><span>] {</span><span style="color: #5A6673;font-style: italic;"> /* see above */</span><span> };</span></span>
+<span class="giallo-l"><span style="color: #FF8F40;">    fn</span><span style="color: #FFB454;"> get_data_descriptions</span><span>()</span><span style="color: #F29668;"> -&gt; &amp;</span><span>&#39;</span><span style="color: #59C2FF;">static</span><span> [</span><span style="color: #F29668;">&amp;</span><span>&#39;</span><span style="color: #59C2FF;">static str</span><span>] {</span></span>
+<span class="giallo-l"><span>        [</span><span style="color: #AAD94C;">&quot;x&quot;</span><span>,</span><span style="color: #AAD94C;"> &quot;sqrt_of_x&quot;</span><span>,</span><span style="color: #AAD94C;"> &quot;exp_of_x&quot;</span><span>,</span><span style="color: #AAD94C;"> &quot;sine_of_x&quot;</span><span>]</span></span>
+<span class="giallo-l"><span>    }</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
+<p>When writing each element of the the output array into a separate fil these files will be named according to <code>get_data_descriptions()</code>'s output elements.</p>
+<p>Now in my usecase these <code>get_data_*()</code>'s will be called <em>all the time</em>, so they have to be fast and ideally should be optimized at compile time. So I need to tell the compiler to have each of them ready. I likely need a <code>match</code> that automatically adds arms for each existing <code>get_data_*()</code>. Likely I need a macro. But that is a tale for another time...</p>
+
+
+  
+  <div class="tag-cloud">
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/rust/">#rust</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/traits/">#traits</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/generics/">#generics</a>
+    
+  </div>
+  
+</article>
+
+  </main>
+
+  <footer>
+    <p>exo-cortex &mdash; exo-cortex</p>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('video.videoloop').forEach(v => {
+    v.addEventListener('mouseenter', () => v.play());
+    v.addEventListener('mouseleave', () => {
+      v.pause();
+      if (v.hasAttribute('data-reset')) v.currentTime = 0;
+    });
+  });
+</script>
+</body>
+</html>

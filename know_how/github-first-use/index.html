@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>github first use &mdash; exo-cortex</title>
+  <link rel="stylesheet" href="https://exo-cortex.github.io/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+<div class="content">
+
+  <header>
+    <a class="site-title" href="https:&#x2F;&#x2F;exo-cortex.github.io">exo-cortex</a>
+    <nav>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io">home</a>
+      <a href="https://exo-cortex.github.io/blog/">blog</a>
+      <a href="https://exo-cortex.github.io/know_how/" class="active">know-how</a>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io/tags">tags</a>
+      <a href="https://exo-cortex.github.io/about/">about</a>
+    </nav>
+  </header>
+
+  <main>
+    
+<article>
+  <div class="post-header">
+    <h1>github first use</h1>
+    <div class="post-meta">
+      <time datetime="2021-05-28">2021-05-28</time>
+      
+    </div>
+  </div>
+
+  <p>This section shall contain short explanations about git and/or github in my own words. The official man page is often a little dense in information- at least for me.</p>
+<p>How to initialize git repository, add files, commit changes and push to existing github repository:</p>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #F07178;">echo</span><span style="color: #AAD94C;"> &quot;# exo-cortex.github.io&quot;</span><span style="color: #F29668;"> &gt;&gt;</span><span style="color: #AAD94C;"> README.md</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">git</span><span style="color: #AAD94C;"> init</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">git</span><span style="color: #AAD94C;"> add README.md</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">git</span><span style="color: #AAD94C;"> commit</span><span style="color: #95E6CB;"> -m</span><span style="color: #AAD94C;"> &quot;first commit&quot;</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">git</span><span style="color: #AAD94C;"> branch</span><span style="color: #95E6CB;"> -M</span><span style="color: #AAD94C;"> main</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">git</span><span style="color: #AAD94C;"> remote add origin git@github.com:exo-cortex/exo-cortex.github.io.git</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">git</span><span style="color: #AAD94C;"> push</span><span style="color: #95E6CB;"> -u</span><span style="color: #AAD94C;"> origin main</span></span></code></pre>
+
+  
+  <div class="tag-cloud">
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/bash/">#bash</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/commandline/">#commandline</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/git/">#git</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/github/">#github</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/how-to/">#how-to</a>
+    
+  </div>
+  
+</article>
+
+  </main>
+
+  <footer>
+    <p>exo-cortex &mdash; exo-cortex</p>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('video.videoloop').forEach(v => {
+    v.addEventListener('mouseenter', () => v.play());
+    v.addEventListener('mouseleave', () => {
+      v.pause();
+      if (v.hasAttribute('data-reset')) v.currentTime = 0;
+    });
+  });
+</script>
+</body>
+</html>

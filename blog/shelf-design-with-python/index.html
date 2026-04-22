@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shelf Design with Python &mdash; exo-cortex</title>
+  <link rel="stylesheet" href="https://exo-cortex.github.io/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+<div class="content">
+
+  <header>
+    <a class="site-title" href="https:&#x2F;&#x2F;exo-cortex.github.io">exo-cortex</a>
+    <nav>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io">home</a>
+      <a href="https://exo-cortex.github.io/blog/" class="active">blog</a>
+      <a href="https://exo-cortex.github.io/know_how/">know-how</a>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io/tags">tags</a>
+      <a href="https://exo-cortex.github.io/about/">about</a>
+    </nav>
+  </header>
+
+  <main>
+    
+<article>
+  <div class="post-header">
+    <h1>Shelf Design with Python</h1>
+    <div class="post-meta">
+      <time datetime="2021-07-04">2021-07-04</time>
+      
+      <span class="updated">(updated <time datetime="2022-03-15">2022-03-15</time>)</span>
+      
+    </div>
+  </div>
+
+  <p>Shelf design done in python.
+Last year I started to build one shelf to fit all my stuff into. The idea had been floating around in my head for around 5 years. The idea was to build a shelf conceptually turned sideways by 90 degrees. Usually shelves consist of vertical wooden planks with horizontal boards between them to put stuff on. This way we can vary the widths of columns of shelves and the heights of each compartment within one column. My idea was to turn this idea around and have rows i.e. "levels" with compartments of equal height but varying widths.
+One challenge that arises is stability. Each level can fall left or right individually. I put a few sturdy backpanels into compartments of each at level and two steel L-profiles left and right to fix the outer vertical boards to each other.</p>
+<div class="media-block" >
+  <img src="&#x2F;img&#x2F;shelf.svg" alt="the final design of the shelf.">
+  
+  <p class="media-caption">the final design of the shelf.</p>
+  
+</div>
+<!-- ![my current shelf design]() -->
+<p>I wanted to build a large shelf for a while.
+The shelf should be irregular in its compartment sizes with some of them sticking out more. It shall be really big as to finally store ALL(tm) my stuff that otherwise just lies around all the time.</p>
+<p>I began rewriting a python script and put it on github [1]. The script will be updated.</p>
+<p>links:
+[1] <a rel="external" href="https://github.com/exo-cortex/shelves_in_python/">shelves_in_python</a></p>
+
+
+  
+  <div class="tag-cloud">
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/python/">#python</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/woodworking/">#woodworking</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/design/">#design</a>
+    
+  </div>
+  
+</article>
+
+  </main>
+
+  <footer>
+    <p>exo-cortex &mdash; exo-cortex</p>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('video.videoloop').forEach(v => {
+    v.addEventListener('mouseenter', () => v.play());
+    v.addEventListener('mouseleave', () => {
+      v.pause();
+      if (v.hasAttribute('data-reset')) v.currentTime = 0;
+    });
+  });
+</script>
+</body>
+</html>

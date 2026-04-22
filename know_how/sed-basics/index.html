@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>sed_basics &mdash; exo-cortex</title>
+  <link rel="stylesheet" href="https://exo-cortex.github.io/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+<div class="content">
+
+  <header>
+    <a class="site-title" href="https:&#x2F;&#x2F;exo-cortex.github.io">exo-cortex</a>
+    <nav>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io">home</a>
+      <a href="https://exo-cortex.github.io/blog/">blog</a>
+      <a href="https://exo-cortex.github.io/know_how/" class="active">know-how</a>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io/tags">tags</a>
+      <a href="https://exo-cortex.github.io/about/">about</a>
+    </nav>
+  </header>
+
+  <main>
+    
+<article>
+  <div class="post-header">
+    <h1>sed_basics</h1>
+    <div class="post-meta">
+      <time datetime="2021-10-30">2021-10-30</time>
+      
+    </div>
+  </div>
+
+  <h1 id="what-is-sed">what is sed?</h1>
+<p>sed is a "stream editor" in the commandline. It can do a lot of things and I wrote down some basics examples here (to avoid re-googling them in a few months). A great and very thorough guide can be found elsewhere [0]. I only post the most useful examples that I needed so far.</p>
+<p>sed typically works by reading an input string, looks for patterns and does something with these patterns. See this basic example:</p>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># replace &quot;a &quot; with &quot;not a &quot;</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> echo &quot;this is a sentence.&quot;</span><span style="color: #F29668;"> |</span><span style="color: #59C2FF;"> sed</span><span style="color: #AAD94C;"> &#39;s/a /not a /&#39;</span></span></code></pre>
+<p>The echo command prints "this is a sentence." and pipes the result (with the "|"-character) to sed which replaces "a " with "not a ". Usually the sed command is followed by 's/PATTERN/REPLACEMENT/'.</p>
+<h2 id="typical-usecases">typical usecases</h2>
+<h3 id="numbers-and-letters">numbers and letters</h3>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># replace a single instance of &quot;number&quot; with the letter &quot;a_&quot;:</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> echo &quot;012345679&quot;</span><span style="color: #F29668;"> |</span><span style="color: #59C2FF;"> sed</span><span style="color: #AAD94C;"> &#39;s/[0-9]/a_/&#39;</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">a_123456789</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># replace a pattern that consists of 0-n instances of &quot;number&quot; with the letter &quot;a_&quot;:</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> echo &quot;012345679&quot;</span><span style="color: #F29668;"> |</span><span style="color: #59C2FF;"> sed</span><span style="color: #AAD94C;"> &#39;s/[0-9]*/a_/&#39;</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">a_</span></span></code></pre>
+<p>the same works for letters:</p>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> echo &quot;abcdefghijklmnopqrstuvwxyz&quot;</span><span style="color: #F29668;"> |</span><span style="color: #59C2FF;"> sed</span><span style="color: #AAD94C;"> &#39;s/[a-z]/A_/&#39;</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">A_bcdefghijklmnopqrstuvwxyz</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> echo &quot;012345679&quot;</span><span style="color: #F29668;"> |</span><span style="color: #59C2FF;"> sed</span><span style="color: #AAD94C;"> &#39;s/[a-z]*/A_/&#39;</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">A_</span></span></code></pre><h3 id="matching-and-replacing-a-pattern-multiple-times">matching and replacing a pattern multiple times</h3>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># replace each occurrence of &quot;b&quot; with &quot;B&quot; </span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> echo &quot;abababa&quot;</span><span style="color: #F29668;"> |</span><span style="color: #59C2FF;"> sed</span><span style="color: #AAD94C;"> &#39;s/b/B/g&#39;</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">aBaBaBa</span></span></code></pre><h3 id="using-the-matched-pattern-again">using the matched pattern again</h3>
+<p>The character "<strong>&amp;</strong>" represents the matched pattern.</p>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># find &quot;b&quot; and replace it with &quot; bb &quot; by doubling the pattern</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> echo &quot;abababa&quot;</span><span style="color: #F29668;"> |</span><span style="color: #59C2FF;"> sed</span><span style="color: #AAD94C;"> &#39;s/b*/ &amp;&amp; /&#39;</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">a</span><span style="color: #AAD94C;"> bb ababa</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># do that for each ocurrence of &quot;b&quot;</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">$</span><span style="color: #AAD94C;"> echo &quot;abababa&quot;</span><span style="color: #F29668;"> |</span><span style="color: #59C2FF;"> sed</span><span style="color: #AAD94C;"> &#39;s/b*/ &amp;&amp; /g&#39;</span></span>
+<span class="giallo-l"><span style="color: #59C2FF;">a</span><span style="color: #AAD94C;"> bb a bb a bb a</span></span></code></pre><h3 id="using-multiple-sed-commands-after-each-other">using multiple sed-commands after each other</h3>
+<p>instead of piping one results from sed to another instance of sed (and so on) sed can match multiple patterns.</p>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># first: replace first instance of a letter with &quot;a_&quot;</span></span>
+<span class="giallo-l"><span style="color: #5A6673;font-style: italic;"># then: replace first instance of a letter with &quot;firstletter&quot;</span></span>
+<span class="giallo-l"><span style="color: #F07178;">echo</span><span style="color: #AAD94C;"> &quot;abcdefghijklmnopqrstuvwxyz&quot;</span><span style="color: #F29668;"> |</span><span style="color: #59C2FF;"> sed</span><span style="color: #AAD94C;"> &#39;s/[a-z]/a_/ ; s/[a-z]/firstletter/&#39;</span></span></code></pre>
+<p>Links:</p>
+<p>[0] <a rel="external" href="https://www.grymoire.com/Unix/Sed.html">sed tutorial</a></p>
+
+
+  
+  <div class="tag-cloud">
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/bash/">#bash</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/linux/">#linux</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/commandline/">#commandline</a>
+    
+  </div>
+  
+</article>
+
+  </main>
+
+  <footer>
+    <p>exo-cortex &mdash; exo-cortex</p>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('video.videoloop').forEach(v => {
+    v.addEventListener('mouseenter', () => v.play());
+    v.addEventListener('mouseleave', () => {
+      v.pause();
+      if (v.hasAttribute('data-reset')) v.currentTime = 0;
+    });
+  });
+</script>
+</body>
+</html>

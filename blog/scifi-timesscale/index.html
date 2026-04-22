@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Scifi-Scale &mdash; exo-cortex</title>
+  <link rel="stylesheet" href="https://exo-cortex.github.io/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+<div class="content">
+
+  <header>
+    <a class="site-title" href="https:&#x2F;&#x2F;exo-cortex.github.io">exo-cortex</a>
+    <nav>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io">home</a>
+      <a href="https://exo-cortex.github.io/blog/" class="active">blog</a>
+      <a href="https://exo-cortex.github.io/know_how/">know-how</a>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io/tags">tags</a>
+      <a href="https://exo-cortex.github.io/about/">about</a>
+    </nav>
+  </header>
+
+  <main>
+    
+<article>
+  <div class="post-header">
+    <h1>The Scifi-Scale</h1>
+    <div class="post-meta">
+      <time datetime="2022-05-26">2022-05-26</time>
+      
+    </div>
+  </div>
+
+  <p>A while ago I read some "hard" science fiction from Charles Stross where he was counting time in kilo-, mega- and gigaseconds. As a result I had to calculate the times each number represented and/or look them up somewhere else in the book. I kept re-calculating a few times and thought that there might be a better way...
+Recently I thought that a nice visualization of these scales might make a good bookmark that people could use.</p>
+<p>I added a few time units as well as some extra pieces of information - like the time it takes for light to travel certain distances.</p>
+<p>Feel free to download this scale. Once I tidy up my code a little I might publish the source code as well (I made it with Rust as an exercise.)</p>
+<p><a href="/img/scifi_time_scale.svg"><img src="/img/scifi_time_scale.svg" alt="a distribution of dots" /></a></p>
+
+
+  
+  <div class="tag-cloud">
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/art/">#art</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/fun/">#fun</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/time/">#time</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/scifi/">#scifi</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/scale/">#scale</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/visualization/">#visualization</a>
+    
+  </div>
+  
+</article>
+
+  </main>
+
+  <footer>
+    <p>exo-cortex &mdash; exo-cortex</p>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('video.videoloop').forEach(v => {
+    v.addEventListener('mouseenter', () => v.play());
+    v.addEventListener('mouseleave', () => {
+      v.pause();
+      if (v.hasAttribute('data-reset')) v.currentTime = 0;
+    });
+  });
+</script>
+</body>
+</html>

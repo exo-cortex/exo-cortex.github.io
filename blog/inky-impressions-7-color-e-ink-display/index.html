@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>New Toy: A 7-color E-Ink Display &mdash; exo-cortex</title>
+  <link rel="stylesheet" href="https://exo-cortex.github.io/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+<div class="content">
+
+  <header>
+    <a class="site-title" href="https:&#x2F;&#x2F;exo-cortex.github.io">exo-cortex</a>
+    <nav>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io">home</a>
+      <a href="https://exo-cortex.github.io/blog/" class="active">blog</a>
+      <a href="https://exo-cortex.github.io/know_how/">know-how</a>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io/tags">tags</a>
+      <a href="https://exo-cortex.github.io/about/">about</a>
+    </nav>
+  </header>
+
+  <main>
+    
+<article>
+  <div class="post-header">
+    <h1>New Toy: A 7-color E-Ink Display</h1>
+    <div class="post-meta">
+      <time datetime="2021-12-06">2021-12-06</time>
+      
+      <span class="updated">(updated <time datetime="2022-05-17">2022-05-17</time>)</span>
+      
+    </div>
+  </div>
+
+  <p>After considerable to and fro I finally ordered a 7-color e-ink <sup class="footnote-reference"><a href="#1">1</a></sup> display for the raspberry pi from pimoroni <sup class="footnote-reference"><a href="#2">2</a></sup>. With the help of the official repository <sup class="footnote-reference"><a href="#3">3</a></sup> putting images on the the display is quite easy. The repository also has code for other e-ink-displays from pimoroni.</p>
+<div class="media-block" >
+  <img src="&#x2F;img&#x2F;inky_paris_1.jpg" alt="inky impressions display showing a photograph of paris">
+  
+  <p class="media-caption">inky impressions display showing a photograph of paris</p>
+  
+</div>
+<p>With about 85mm x 115mm it is comparable to typical e-reader display sizes. Although the glass leads to a different look compare to the matte e-reader displays. When setting a new image the transition looks quite elaborate and takes about 30 seconds of flashing through different colors. Eventually it looks quite interesting. With the limited range of colors everything looks a little like an art print with intentionally noticeable dithering artifacts <sup class="footnote-reference"><a href="#4">4</a></sup>. The artifacts are shown in the closeups beneath.</p>
+<p><div class="media-block" >
+  <img src="&#x2F;img&#x2F;inky_paris_2.jpg" alt="a closup of the image">
+  
+  <p class="media-caption">a closup of the image</p>
+  
+</div>
+
+<div class="media-block" >
+  <img src="&#x2F;img&#x2F;inky_paris_3.jpg" alt="even closer closup">
+  
+  <p class="media-caption">even closer closup</p>
+  
+</div>
+</p>
+<h1 id="update-e-paper-display-in-a-frame">update: e-paper display in a frame</h1>
+<p>After ordering a paper mat<sup class="footnote-reference"><a href="#5">5</a></sup> and frame of fitting size for the display I <em>finally</em> went on and build a fixure so that the display would stay at the right position behind the opening.  I used 3mm gray paperboard and cut it to size.
+<div class="media-block" >
+  <img src="&#x2F;img&#x2F;inky_frame_fixture_1_small.jpg" alt="lalala">
+  
+  <p class="media-caption">lalala</p>
+  
+</div>
+
+<div class="media-block" >
+  <img src="&#x2F;img&#x2F;inky_frame_fixture_2_small.jpg" alt="lalala">
+  
+  <p class="media-caption">lalala</p>
+  
+</div>
+</p>
+<p>The framed display already aced its first test passing as a regular paper print, when my girlfriend didn't notice anything about it.</p>
+<p><strong>next up</strong>:
+writing some scripts that automatically resize, crop and put images onto the display. Also some scripts that show weather information.</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>https://en.wikipedia.org/wiki/Electronic_paper</p>
+</div>
+<div class="footnote-definition" id="2"><sup class="footnote-definition-label">2</sup>
+<p>https://shop.pimoroni.com/products/inky-impression</p>
+</div>
+<div class="footnote-definition" id="3"><sup class="footnote-definition-label">3</sup>
+<p>https://github.com/pimoroni/inky</p>
+</div>
+<div class="footnote-definition" id="4"><sup class="footnote-definition-label">4</sup>
+<p>https://en.wikipedia.org/wiki/Dither</p>
+</div>
+<div class="footnote-definition" id="5"><sup class="footnote-definition-label">5</sup>
+<p>https://en.wikipedia.org/wiki/Mat_(picture_framing) (in German: "passepartout")</p>
+</div>
+
+
+  
+  <div class="tag-cloud">
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/raspberry-pi/">#raspberry pi</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/e-ink/">#e-ink</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/art/">#art</a>
+    
+  </div>
+  
+</article>
+
+  </main>
+
+  <footer>
+    <p>exo-cortex &mdash; exo-cortex</p>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('video.videoloop').forEach(v => {
+    v.addEventListener('mouseenter', () => v.play());
+    v.addEventListener('mouseleave', () => {
+      v.pause();
+      if (v.hasAttribute('data-reset')) v.currentTime = 0;
+    });
+  });
+</script>
+</body>
+</html>
