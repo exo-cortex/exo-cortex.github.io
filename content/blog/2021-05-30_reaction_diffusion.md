@@ -2,7 +2,7 @@
 title = "Reaction Diffusion Systems"
 date = 2021-05-30
 draft = false
-slug = "reaction-diffusion"
+slug = "reaction-diffusion-systems"
 
 [taxonomies]
 tags = ["art", "math"]
@@ -27,7 +27,7 @@ $$
 
 In this model the interaction $u$ and $v$ can be seen as 2 chemicals each with their respective diffusion rates. $u$ and $v$ are simply two functions over some space (a 2D space in my case). $f, k$ are system-specific. We can think of $u$ and $v$ as two densities values distributed over a domain. In my case this domain is a 2-dimensional area. Which means that $u$ and $v$ are simply 2 textures.
 
-{{ video(src="/video/react_anim_01_compatible.webm", type="video/webm", preload="auto", width="200") }}
+{{ videoloop(src="/video/react_anim_01_compatible.webm") }}
 
 ![interesting pattern1](/img/little_creatures_800x800.png)
 ![interesting pattern2](/img/reaction_diffusion_mesh.png)
