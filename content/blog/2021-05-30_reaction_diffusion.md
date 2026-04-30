@@ -27,7 +27,11 @@ $$
 
 In this model the interaction $u$ and $v$ can be seen as 2 chemicals each with their respective diffusion rates. $u$ and $v$ are simply two functions over some space (a 2D space in my case). $f, k$ are system-specific. We can think of $u$ and $v$ as two densities values distributed over a domain. In my case this domain is a 2-dimensional area. Which means that $u$ and $v$ are simply 2 textures.
 
+{% row() %}
 {{ videoloop(src="/video/react_anim_01_compatible.webm") }}
+{{ videoloop(src="/video/slower.mkv") }}
+{{ videoloop(src="/video/reloop_faster.mkv") }}
+{% end %}
 
 ![interesting pattern1](/img/little_creatures_800x800.png)
 ![interesting pattern2](/img/reaction_diffusion_mesh.png)
@@ -36,7 +40,6 @@ This animation was made with python using numpy and scipy. A version of the pyth
 
 
 ---
-
 see also:
 - [reaction diffusion in the browser](https://pmneila.github.io/jsexp/grayscott/)
 - [overview + classification of different patterns](https://mrob.com/pub/comp/xmorphia/pearson-classes.html)
