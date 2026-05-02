@@ -9,6 +9,7 @@ tags = ["audio", "curves"]
 
 [extra]
 math = true
+update = 2026-04-24
 +++
 
 **idea**: creating sound from *pure functions*.  
