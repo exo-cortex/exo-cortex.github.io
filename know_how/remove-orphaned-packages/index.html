@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Remove Orphaned Packages &mdash; exo-cortex</title>
+  <link rel="stylesheet" href="https://exo-cortex.github.io/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,800;1,400;1,800&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+<div class="content">
+
+  <header>
+    <a class="site-title" href="https:&#x2F;&#x2F;exo-cortex.github.io">exo-cortex</a>
+    <nav>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io">home</a>
+      <a href="https://exo-cortex.github.io/blog/">blog</a>
+      <a href="https://exo-cortex.github.io/know_how/" class="active">know-how</a>
+      <a href="https:&#x2F;&#x2F;exo-cortex.github.io/tags">tags</a>
+      <a href="https://exo-cortex.github.io/about/">about</a>
+    </nav>
+  </header>
+
+  <main>
+    
+<article>
+  <div class="post-header">
+    <h1>Remove Orphaned Packages</h1>
+    <div class="post-meta">
+      <time datetime="2026-05-02">2026-05-02</time>
+      
+    </div>
+  </div>
+
+  <h1 id="how-clean-up-orphaned-packages-on-arch-linux">How Clean up orphaned packages on arch linux</h1>
+<p>Use this command to get a list list of unneeded packages and directly remove it with pacman.</p>
+<pre class="giallo" style="color: #BFBDB6; background-color: #0D1017;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #59C2FF;">pacman</span><span style="color: #95E6CB;"> -Qqtd</span><span style="color: #F29668;"> |</span><span style="color: #59C2FF;"> sudo</span><span style="color: #AAD94C;"> pacman</span><span style="color: #95E6CB;"> -Rns</span><span style="color: #AAD94C;"> -</span></span></code></pre>
+<p>Explanation:</p>
+<ol>
+<li>Retrieve packages that were not explicitly installed or were installed as dependencies but dependents were since removed:</li>
+</ol>
+<ul>
+<li><strong>Q</strong> - Query</li>
+<li><strong>q</strong> - quiet</li>
+<li><strong>t</strong> - unrequired</li>
+<li><strong>d</strong> - nodeps</li>
+</ul>
+<ol start="2">
+<li>Remove packagesr recursively without creation of backug config files</li>
+</ol>
+<ul>
+<li><strong>R</strong> - Remove</li>
+<li><strong>n</strong> - no-save (do not save configs as backups)</li>
+<li><strong>s</strong> - recursive</li>
+</ul>
+
+
+  
+  <div class="tag-cloud">
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/archlinux/">#archlinux</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/pacman/">#pacman</a>
+    
+    <a class="tag-pill" href="https://exo-cortex.github.io/tags/cleanup/">#cleanup</a>
+    
+  </div>
+  
+</article>
+
+  </main>
+
+  <footer>
+    <p>exo-cortex &mdash; exo-cortex</p>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('video.videoloop').forEach(v => {
+    v.addEventListener('mouseenter', () => v.play());
+    v.addEventListener('mouseleave', () => {
+      v.pause();
+      if (v.hasAttribute('data-reset')) v.currentTime = 0;
+    });
+  });
+</script>
+</body>
+</html>
