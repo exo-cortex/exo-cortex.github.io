@@ -159,6 +159,25 @@ img {
     }
 }
 
+// ── Figure band (row of images at fixed height) ───────────────
+.media-band-wrapper {
+    margin: 1.5em 0;
+}
+
+.media-band {
+    display: flex;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    img {
+        height: 100%;
+        width: auto;
+        display: block;
+        border: 2px solid #ececec;
+    }
+}
+
 .media-caption {
     font-family: "IBM Plex Mono", monospace;
     font-size: 0.8rem;

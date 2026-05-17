@@ -1,0 +1,32 @@
+<div class="media-band-wrapper">
+  <div class="media-band" style="width: min({{ width | default(value='100%') }}, 100vw); gap: {{ gap | default(value='4px') }};">
+    {% for src in srcs %}
+    <img src="{{ src }}" alt="{{ caption | default(value='') }}">
+    {% endfor %}
+  </div>
+  <script>
+  (function () {
+    var band = document.currentScript.previousElementSibling;
+    var imgs = band.querySelectorAll('img');
+    function layout() {
+      if (![].every.call(imgs, function (i) { return i.naturalWidth > 0; })) return;
+      var gap = parseFloat(getComputedStyle(band).gap) || 0;
+      var sumR = [].reduce.call(imgs, function (s, i) { return s + i.naturalWidth / i.naturalHeight; }, 0);
+      band.style.height = (band.offsetWidth - gap * (imgs.length - 1)) / sumR + 'px';
+    }
+    if ([].every.call(imgs, function (i) { return i.complete && i.naturalWidth > 0; })) {
+      layout();
+    } else {
+      [].forEach.call(imgs, function (i) { i.addEventListener('load', layout); });
+    }
+    if (typeof ResizeObserver !== 'undefined') {
+      new ResizeObserver(layout).observe(band);
+    } else {
+      window.addEventListener('resize', layout);
+    }
+  })();
+  </script>
+  {% if caption %}
+  <p class="media-caption">{{ caption }}</p>
+  {% endif %}
+</div>
